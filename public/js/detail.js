@@ -7,7 +7,7 @@ if(btnComment){
         const productId=flex.getAttribute('data-id')
         let content=document.getElementById('content').value;
         $.ajax({
-                url:'http://localhost:3000/products/comment',
+                url:'/products/comment',
                 type:'POST',
                 data:{
                     productId:productId,
@@ -58,7 +58,7 @@ if(buttonAddCart){
         const quantity=parseInt(quantityInput.value)
         $.ajax({
             type:'post',
-            url:'http://localhost:3000/order/add',
+            url:'/order/add',
             data:{
                 productId:productId,quantity:quantity
             },
@@ -113,7 +113,7 @@ if (btnPay) {
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'http://localhost:3000/order/checkPay',
+            url:'/order/checkPay',
             data:{
                 productId:productId
             },
