@@ -1,0 +1,51 @@
+extends ../../layouts/default.pug
+block main
+  .checkout
+    .container.my-3
+      .row
+        .col-7.info 
+          div(class="order-review bg-white rounded p-15 mb-10")
+            div(class="entry-order-review mb-0 ")
+              h4(class="title-checkout color-black")
+                b Thông tin khách hàng
+              div(class="entry-account-detail")        
+                p(class="mb-0") Họ tên: <strong>#{orderInfo.userInfo.fullname}</strong>
+                p(class="mb-0") Số điện thoại: <strong>#{orderInfo.userInfo.phone}</strong>
+                p(class="mb-0") Địa chỉ: <strong>#{orderInfo.userInfo.address}, #{orderInfo.userInfo.province}, #{orderInfo.userInfo.district}, #{orderInfo.userInfo.ward}</strong>
+          div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
+            form(id="form-checkout"  method="post") 
+              select(name="payment-method" class="form-control")
+                option(value="0") Thanh toán tiền mặt khi nhận hàng
+              button(class="bg-main btn btn-1a payment-now color-white rounded py-10 px-20 w-100 mt-2") Thanh toán ngay
+        .col-5
+          div(class="order-review bg-white rounded p-15 mb-10")
+            div(class="entry-order-review mb-0 ")
+              h4(class="title-checkout color-black")
+                b Giỏ hàng
+              each cart in orderInfo.products
+                div(class="product-element-top  py-10 space-5")        
+                  .col-3.col-md-2
+                    div(class="position-relative rti-100")
+                      img(class="img-fluid rti-abs-cover " src=cart.productInfo.thumbnail) 
+                  .col-9.col-md-10
+                    div(class="top-name-right")
+                      div(class="name-element font-weight-bold")
+                        a(href="javascript:;") #{cart.productInfo.title}
+                      div(class="quantity") Số lượng: <strong>#{cart.quantity}</strong>
+                      div(class="price-quantity")
+                        span(class="price-amount1 mx-0")
+                          |#{cart.productInfo.totalPrice}
+                          span(class="currency-symbol") đ
+          div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
+            div(class="d-flex justify-content-between")
+              span Đơn giá
+              span(class="text-right price-amount1")
+                |#{orderInfo.totalPrice}
+                span(class="currency-symbol") đ
+            div(class="separation-dash mt-3 mb-3")
+            iv(class="d-flex justify-content-between mb-15")
+              span Thành tiền
+              span(class="text-right price-amount1")
+                |#{orderInfo.totalPrice}
+                span(class="currency-symbol") đ
+  //- script(src="/js/checkout.js") 

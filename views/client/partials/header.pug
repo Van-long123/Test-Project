@@ -1,0 +1,33 @@
+nav#navbar.navbar.navbar-expand-lg
+    .container
+        a#logo.navbar-brand(href="/")
+            img(src=settingGeneral.logo, alt, width="30px")
+        button(class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation") <span class="navbar-toggler-icon"></span>
+        #navbarSupportedContent.collapse.navbar-collapse
+            .d-flex.w-100.icons(role="search")
+                .icon-search.d-flex.w-100
+                    form.icon-search.d-flex.w-100.rounded(action="/products", method="get")
+                        input.form-control.me-2.searchInput.w-100.border(style="height: 100%;", name="search", type="text", placeholder="Search", aria-label="Search" value=search)
+                        button(style="border: none;", type="submit") <i style="font-size: 25px;" class="bi bi-search"></i> 
+                .icons-cart
+                    a(href="/order/cart-info") <i style="font-size: 27px; "class="bi bi-cart-check-fill"></i>
+                    span.countsp #{totalCart ? totalCart: 0}
+                    div(id="addsucces" show-alert data-time=5000)
+                        p.addsucces-xmark
+                            i(class="fa-solid fa-xmark" close-alert)
+                        p.addsucces-text
+                            i(class="fa-solid fa-circle-check" ) 
+                            |Thêm vào giỏ hàng thành công!
+                        .addsucces-actions
+                            a(href="/order/cart-info") Xem giỏ hàng và thanh toán
+                .icons-user
+                    a(href="/user/login")
+                        i.bi.bi-person-fill(style="font-size: 29px;")
+                    .icons-user-board
+                        a(href="/user/register") Đăng ký
+                        a.mt-1(href="/user/order") Đơn hàng của tôi
+                        if(user)
+                            a(href="/user/logout") Đăng xuất
+                            a.mb-1(href="/user/password/reset") Đổi mật khẩu

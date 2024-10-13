@@ -1,0 +1,85 @@
+body {
+    min-height: 100vh;
+    background-size: cover;
+    background-color: #f4f4f4; /* Thay đổi màu nền */
+    font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto */
+    color: rgba(116, 116, 116, 0.667);
+}
+
+.container-fluid {
+    margin-top: 100px; /* Điều chỉnh khoảng cách phía trên */
+}
+
+.order {
+    position: relative;
+    margin-top: 30px; /* Thay đổi khoảng cách để tránh quá sát */
+}
+
+p {
+    font-size: 15px; /* Tăng kích thước font */
+    margin-bottom: 8px; /* Tăng khoảng cách giữa các đoạn */
+}
+
+.small {
+    letter-spacing: 0.5px !important;
+}
+
+.card-1 {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Tạo bóng cho thẻ */
+    border-radius: 10px; /* Bo góc cho thẻ */
+}
+
+.card-body {
+    padding: 20px; /* Tăng padding cho card body */
+}
+
+hr {
+    background-color: rgba(248, 248, 248, 0.667);
+    height: 1px; /* Tăng chiều cao của đường ngang */
+    margin: 20px 0; /* Thêm khoảng cách cho đường ngang */
+}
+
+.change-color {
+    color: #AB47BC !important;
+}
+
+h4, h6 {
+    font-weight: bold; /* Đặt font-weight cho tiêu đề */
+    color: #333; /* Đặt màu tiêu đề */
+}
+
+h4 {
+    font-size: 22px; /* Tăng kích thước cho h4 */
+}
+
+h6 {
+    font-size: 18px; /* Tăng kích thước cho h6 */
+}
+
+.logo img {
+    width: 120px;
+    height: auto; /* Đảm bảo hình ảnh có chiều cao tự động */
+    padding-right: 10px;
+}
+
+.info {
+    border-left: 2px solid #AB47BC; /* Thay đổi màu và độ dày đường viền */
+    padding-left: 15px; /* Tăng khoảng cách bên trái */
+    height: 20px;
+    font-size: 22px; /* Tăng kích thước font */
+    position: relative;
+    top: 15px; /* Tăng khoảng cách từ trên xuống */
+}
+
+@media (max-width: 700px) {
+    h2 {
+        font-size: 18px; /* Thay đổi kích thước tiêu đề trên màn hình nhỏ */
+    }
+}
+
+@media (max-width: 479px) {
+    .invoice {
+        position: relative;
+        top: 7px;
+    }
+}

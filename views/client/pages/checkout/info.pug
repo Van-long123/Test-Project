@@ -1,0 +1,95 @@
+extends ../../layouts/default.pug
+block main
+  .checkout
+    .container.my-3
+      .row
+        .col-7.info 
+          div(class="order-review bg-white rounded p-15 mb-10")
+            div(class="entry-order-review mb-0 ")
+              h4(class="title-checkout color-black")
+                b Thông tin khách hàng
+              div(class="account-detail")  
+                .container
+                  .row
+                    .col-lg-8.col-12     
+                      .form-group.validate-form
+                        input(type="text" class="input-hover bg-white border form-control " name="full_name" placeholder="Họ và tên" value=user?user.fullname:'')
+                        lable(id="full_name-error" class="error invalid-feedback1" for="full_name") Vui lòng nhập họ tên
+                    div(class="col-lg-4 col-12")
+                      .form-group.validate-form
+                        input(class="input-hover bg-white border form-control " name="phone" value=user?user.phone:'' type="text" placeholder="Số điện thoại")
+                        lable(id="phone-error" class="error invalid-feedback1" for="phone") Vui lòng nhập số điện thoại
+                        lable(id="phone-error-format" class="error invalid-feedback1" for="phone" ) Số điện thoại ko đúng định dạng
+
+
+                  .row  
+                    .col-lg-6.col-12.mb-3
+                      select(id='provinces' class="form-control" name="provinces")
+                        option(value='') -- Tỉnh thành --
+                      lable(id="provinces-error" class="error invalid-feedback1" for="provinces") Vui lòng chọn tỉnh, thành
+
+                    .col-lg-6.col-12.mb-3
+                      select(id='districts' class="form-control" name="districts")
+                        option(value='') -- Quận huyện --
+                      lable(id="districts-error" class="error invalid-feedback1" for="districts") Vui lòng chọn quận, huyện
+                    .col-lg-6.col-12
+                      select(id='wards' class="form-control" name="wards")
+                        option(value='') -- Phường xã --
+                      lable(id="wards-error" class="error invalid-feedback1" for="districts") Vui lòng chọn phường, xã
+                    .col-lg-6.col-12
+                      input(class="input-hover bg-white border form-control " name="address" value=user?user.address:'' type="text" placeholder="Số nhà,ngõ,đường")
+                      lable(id="address-error" class="error invalid-feedback1" for="address") Vui lòng địa chỉ
+
+        .col-5
+          div(class="order-review bg-white rounded p-15 mb-10")
+            div(class="entry-order-review mb-0 ")
+              h4(class="title-checkout color-black")
+                b Giỏ hàng
+              if(cartDetail)
+                each cart in cartDetail.products
+                  div(class="product-element-top  py-10 space-5" data_id=cart.product_id)        
+                    .col-3.col-md-2
+                      div(class="position-relative rti-100")
+                        a(href=`/detail/${cart.productInfo.slug}`)
+                          img(class="img-fluid rti-abs-cover " src=cart.productInfo.thumbnail) 
+                    .col-9.col-md-10
+                      div(class="top-name-right")
+                        div(class="name-element font-weight-bold")
+                          a(href=`/detail/${cart.productInfo.slug}`) #{cart.productInfo.title}
+                        div(class="quantity") Số lượng: <strong>#{cart.quantity}</strong>
+                        div(class="price-quantity")
+                          span(class="price-amount1 mx-0")
+                            |#{cart.productInfo.totalPrice}
+                            span(class="currency-symbol") đ
+              else  
+                div(class="product-element-top  py-10 space-5" data_id=product.id)        
+                    .col-3.col-md-2
+                      div(class="position-relative rti-100")
+                        a(href=`/detail/${product.slug}`)
+                          img(class="img-fluid rti-abs-cover " src=product.thumbnail) 
+                    .col-9.col-md-10
+                      div(class="top-name-right")
+                        div(class="name-element font-weight-bold")
+                          a(href=`/detail/${product.slug}`) #{product.title}
+                        div(class="quantity") Số lượng: <strong>1</strong>
+                        div(class="price-quantity")
+                          span(class="price-amount1 mx-0")
+                            |#{product.priceNew}
+                            span(class="currency-symbol") đ
+          div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
+            div(class="d-flex justify-content-between")
+              span Đơn giá
+              span(class="text-right price-amount1")
+                |#{product ? product.priceNew : cartDetail.totalPrice}
+                span(class="currency-symbol") đ
+            div(class="separation-dash mt-3 mb-3")
+            iv(class="d-flex justify-content-between mb-15")
+              span Thành tiền
+              span(class="text-right price-amount1")
+                |#{product ? product.priceNew : cartDetail.totalPrice}
+                span(class="currency-symbol") đ
+            button(class="bg-main btn btn-1a color-white rounded py-10 px-20 w-100 mt-2 mb-2") Thanh toán
+            a(href="/order/cart-info" class="color-main ") 
+                <i class="fa-solid fa-arrow-left mr-2"></i>
+                |Quay lại giỏ hàng
+  script(src="/js/checkout.js") 

@@ -1,0 +1,102 @@
+extend ../../layouts/default
+include ../../mixins/alert.pug
+block main
+    #Menu.menu.section-padding
+        .container
+        
+            if(messages.error)
+                div(
+                    class="alert alert-danger text-center"
+                    show-alert1 
+                    data-time=5000
+                )   #{messages.error} <span close-alert1>X</span>
+            .row
+                .col-12
+                    .our-menu.mb-2
+                        h1
+                            span SẢN PHẨM NỔI BẬT
+                        .inner-dir
+                
+        .container-fluid
+            .row
+                .sidebar.col-lg-2.ms-5
+                    .d-flex.flex-column.flex-shrink-0.text-black.bg-white
+                        h3(class="d-flex align-items-center text-black")
+                            svg.bi(width="40", height="32")
+                                use(xlink:href="#bootstrap")
+                            span.fs-4 Danh mục
+                        ul.nav.nav-pills.flex-column.mb-auto.mt-3
+                            each category in productsCategory
+                                li.nav-sidebar
+                                    a.nav-link.text-black.a-sidebar(href=`/products/${category.slug}`)
+                                        img(class="nav-sidebar-img" src=category.thumbnail alt="category image") 
+                                        span #{category.title}
+                            
+                .content.col-lg-9
+                    .container-fluid
+                        .row
+                            each product in productsFeatured
+                                .col-lg-3.col-md-6.col-12.mb-3
+                                    .h-100.card(data-id=product.id data-quantity=product.stock)
+                                        a(href=`detail/${product.slug}`) 
+                                            img.card-img-top(src=product.thumbnail alt="product image")
+                                        if(product.featured=="1")
+                                            .inner-featured Nổi bật
+                                        button.btn-add.rounded
+                                            i.bi.bi-cart-check-fill
+                                        .card-body
+                                            .inner-content.mb-2
+                                                span.inner-onsale
+                                                    i.fa-solid.fa-bolt 
+                                                    |GIẢM -#{product.discountPercentage}%
+                                            h4.product-title
+                                                a(href=`detail/${product.slug}`)   #{product.title}
+                                            .price
+                                                span.price-amount #{product.priceNew}
+                                                    span.currency-symbol đ
+                                                span.price-amount.old-price #{product.price} <span class="currency-symbol1">đ</span>
+                                            //- a(href=`/order/info?id=${product.id}` class="btn btn-pay mt-2 ") Mua ngay
+                                            //- button.btn.btn-pay.mt-2(data-id="{{$value->id}}") Mua ngay
+                                            button(data-id=product.id class="btn btn-pay mt-2 ") Mua ngay
+                            
+                        .row.mt-3
+                            .col-12.text-center
+                                a(href="products/featured" class="button-main-outline") <span>Xem thêm</span> <i class="fa-solid fa-angle-down"></i>
+                    .container-fluid
+                        .row
+                            .col-12.mt-4.mb-4
+                                span.product-new-text SẢN PHẨM MỚI NHẤT
+                                .inner-dir1      
+                        .row
+                            each product in productNew
+                                .col-lg-4.col-md-6.col-12.mb-3
+                                    .h-100.card(data-id=product.id data-quantity=product.stock)
+                                        a(href=`detail/${product.slug}`) 
+                                            img.card-img-top(src=product.thumbnail  alt="product image")
+                                        button.btn-add.rounded
+                                            i.bi.bi-cart-check-fill
+                                        .card-body
+                                            .inner-content.mb-2
+                                                span.inner-onsale
+                                                    i.fa-solid.fa-bolt 
+                                                    |GIẢM -#{product.discountPercentage}%
+                                            h4.product-title
+                                                a(href=`detail/${product.slug}`)  #{product.title}
+                                            .price
+                                                span.price-amount #{product.priceNew}
+                                                    span.currency-symbol đ
+                                                span.price-amount.old-price #{product.price} <span class="currency-symbol1">đ</span>
+                                            //- button(data=product.id class="btn btn-pay mt-2 ") Mua ngay
+                                            button(data-id=product.id class="btn btn-pay mt-2 ") Mua ngay
+                        .row.mt-3
+                            .col-12.text-center
+                                a(href="products" class="button-main-outline") <span>Xem thêm</span> <i class="fa-solid fa-angle-down"></i>
+                                        
+    div(id="notificationmethod" class="method")
+        div(class="method-content")
+            p(class="method-text") sản phẩm <span class="method-name-product"></span> đã hết! 
+            div(class="method-actions")
+                button(class="confirmation btn btn-primary") Xác nhận
+    
+
+    script(src="/js/cart.js") 

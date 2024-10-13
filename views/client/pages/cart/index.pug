@@ -1,0 +1,92 @@
+extend ../../layouts/default
+block main
+    .cart
+        if(cartDetail.products.length>0)
+            div(id="main_cart")
+                div(class="container mb-3")
+                    div(class="cart-title mb-2")
+                        h4 GIỎ HÀNG
+                    div(class="row")
+                        div(class="col-lg-12 col-12")
+                            div(class="cart-header")
+                                <label>
+                                    span(class="ms-1") Tất cả <span class="all-sp"> (sản phẩm)</span>
+                                </label>
+                                span.cart-header-text Đơn giá
+                                span.cart-header-text Số lượng
+                                span.cart-header-text Thành tiền
+                                span <img class="trash-all" src="/uploads/trash.svg" alt="">
+                            div(style="background-color: #F5F5FA;display: block;padding: 5px;")
+
+                            each cart in cartDetail.products
+                                div(class="cart-product" data-id=cart.product_id)
+                                    .cart-body
+                                        .cart-item
+                                            img(class="mx-2 mr-5" src=cart.productInfo.thumbnail alt=cart.productInfo.title)
+                                            a(href=cart.productInfo.slug ) #{cart.productInfo.title}
+                                        .cart-gia
+                                            span.price-amount #{cart.productInfo.priceNew}
+                                                span.currency-symbol đ
+                                        div(class="product-quantity")
+                                            span.btn-quantity.decrease-btn
+                                                img(src="/uploads/decrease.svg", alt="")
+                                            input(class="text-center quantity-input events-none" disabled type="text", value=cart.quantity,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" )
+                                            span.btn-quantity.increase-btn
+                                                img(src="/uploads/increase.svg", alt="")
+                                        .cart-tt
+                                            span.price-amount #{cart.productInfo.totalPrice}
+                                                span.currency-symbol đ
+                                        .cart-img
+                                            span.trash
+                                                img.trash-img(src="/uploads/trash.svg", alt="")
+                                    div(style="background-color: #efefef;display: block;height: 1px;")
+            
+                                    .cart-bootom
+                                        p Shop Khuyến mãi
+                                        span.vlcsp Vui lòng chọn sản phẩm trước
+                            
+                        
+                        div(class="col-lg-6 col-12")
+                            .cart-sidebar-bottom
+                                p Tổng tiền
+                                span.total.total-money
+                                    span.price-amount #{cartDetail.totalPrice}
+                                        span.currency-symbol đ
+                            .cart-sidebar-btn
+                                button(class="pay-cart") Xác nhận giỏ hàng
+        else   
+            div(class="container px-0" )
+
+                div(class=" cart-title py-2 mb-3")
+                    h4 GIỎ HÀNG
+                div(class="cart-empty py-4 rounded")
+                    img(src="/uploads/cart1.png")
+                    p(class="Cart-Empty-Notification") Giỏ hàng trống
+                    p(style="font-size: 16px;") Bạn tham khảo thêm các sản phẩm được Food gợi ý bên dưới nhé!
+    .container.suggested-products
+        .suggested-title
+            h4 Sản phẩm bán chạy
+        .suggest-products.mt-3
+            each productRandom in productsRandom
+                a(href=`/detail/${productRandom.slug}`)
+                    .suggest-item
+                        img(class="suggest-item-img" src=productRandom.thumbnail alt=productRandom.title)
+                        img(class="img-ch" src="/uploads/chinhhang.png" alt="")
+                        p.suggest-item-name.mt-1.ms-1 #{productRandom.title}
+                        p.suggest-item-price.ms-1.mt-1 #{productRandom.price}<span style="font-size:14px">đ</span>
+    div(id="confirmationModal" class="modal")
+        div(class="modal-content" style="width: 25%")
+            p <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Xóa sản phẩm
+            p( class="modal-text") Bạn có muốn xóa sản phẩm đang chọn?
+            div(class="modal-actions")
+                button(class="confirm") Xác nhận 
+                button(class="cancel") Hủy
+
+    
+    div(id="notificationmethod" class="method")
+        div(class="method-content")
+            p(class="method-text") sản phẩm <span class="method-name-product"></span> đã hết! 
+            div(class="method-actions")
+                button(class="confirmation btn btn-primary") Xác nhận
+
+    script(src="/js/cart.js") 

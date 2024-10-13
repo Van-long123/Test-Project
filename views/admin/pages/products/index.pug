@@ -1,0 +1,135 @@
+extend ../../layouts/default
+include ../../mixins/fillter-status
+include ../../mixins/search
+include ../../mixins/pagination
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+include ../../mixins/sort.pug
+include ../../mixins/moment.pug
+block main
+    if(role.permissions.includes("products_view"))
+        h1 Trang danh sách sản phẩm
+        .card.mb-3
+            .card-header Bộ lọc và Tìm kiếm
+            .card-body
+                +alert-success(5000)
+                +alert-error(5000)
+                .row
+                    .col-6
+                        +fillter-status(fillterStatus)
+                    .col-6
+                        +search()
+
+        .card.mb-3
+            .card-header Danh sách sản phẩm
+            .card-body
+                .row
+                    .col-8
+                        if(role.permissions.includes("products_edit"))
+                            +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                    .col-4
+                        if(role.permissions.includes("products_create"))
+                            a(href=`${prefixAdmin}/products/create` class="btn btn-success") Thêm mới
+        .card.mb-3
+            .card-header Sắp xếp
+                .card-body
+                    .row
+                    .col-4
+                        +sort()              
+                table(class="table table-hover table-sm" checkbox-multi)
+                    thead
+                        tr
+                            th 
+                                input(type="checkbox", name="checkall")
+                            th STT
+                            th Hình ảnh
+                            th Tiêu đề
+                            th Giá
+                            th Vị trí
+                            th Trạng thái
+                            th Người tạo
+                            th Người cập nhật
+                            th Hành động
+                    tbody
+                        each item,index in products
+                            tr
+                                td 
+                                    input(type="checkbox", name="id" value=item.id)
+                                //- td #{pagination.limitItems*(pagination.currentPage-1)+(index +1)}
+                                td #{pagination.limitItems*(pagination.currentPage-1)+(index +1)}
+                                td
+                                    img(src=`${item.thumbnail}`, alt=item.title, width="100px", height="auto")
+                                td #{item.title}
+                                td #{item.price}$
+                                td
+                                    input(type="number", name="position" value=item.position min=1 style="width:60px")
+                                td 
+                                    if(role.permissions.includes("products_edit"))
+                                        if(item.status == 'active')
+                                            a(
+                                                href="javascript:;"
+                                                data-status=item.status
+                                                data-id=item.id
+                                                button-change-status
+                                                class="badge badge-success") #{item.status}
+                                        else
+                                            a(
+                                                href="javascript:;"
+                                                data-status=item.status
+                                                data-id=item.id
+                                                button-change-status
+                                                class="badge badge-danger") #{item.status}
+                                    else 
+                                        if(item.status == "active")
+                                            a(
+                                                href="javascript:;"
+                                                class="badge badge-success") #{item.status}
+                                        else
+                                            a(
+                                                href="javascript:;"
+                                                class="badge badge-danger") #{item.status}
+                                td 
+                                    p #{item.fullname}
+                                    if(item.createdBy.createdAt)
+                                        //- p=moment(item.createdBy.createdAt).format("DD/MM/YYYY HH:mm:ss")
+                                        +formatDateTime(item.createdBy.createdAt)
+                                        //- //- p #{item.createdBy.createdAt}
+                                        //- //- p #{moment(item.createdBy.createdAt).format("DD/MM/YYYY hh:mm:ss")}
+                                        //- p #{moment(item.createdBy.createdAt).format("DD/MM/YYYY HH:mm:ss")}
+                                td 
+                                    - let updatedBy=item.updatedBy.slice(-1)[0]
+                                    if(updatedBy)
+                                        p #{updatedBy.accountFullName}
+                                        //- p=moment(updatedBy.updatedAt).format("DD/MM/YYYY HH:mm:ss")
+                                        +formatDateTime(updatedBy.updatedAt)
+                                td 
+                                    a(href=`${prefixAdmin}/products/detail/${item.id}` class="btn btn-secondary btn-sm") Chi tiết
+                                    if(role.permissions.includes("products_edit"))
+                                        a(href=`${prefixAdmin}/products/edit/${item.id}` class="btn btn-warning  btn-sm ml-1") Sửa
+                                    if(role.permissions.includes("products_delete"))
+                                        button(
+                                            class="btn btn-danger btn-sm ml-1"
+                                            data-id=item.id
+                                            button-delete
+                                            ) Xóa
+
+        +pagination(pagination)
+        
+        //- html chỉ có 2 pt là post và patch
+        //- khi nhấn submit mà method là get sẽ lọt vào route get còn post thì router post
+        form(
+            action=""
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/products/change-status`
+        ) 
+        form(
+            action=""
+            method="POST"
+            id="form-delete-item"
+            data-path=`${prefixAdmin}/products/delete`
+        ) 
+        script(src="/admin/js/product.js")
+    else
+        img(src="/uploads/5206817.jpg", alt="Unauthorization" style="width:1000px;height:600px")
+    

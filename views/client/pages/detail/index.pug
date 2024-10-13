@@ -1,0 +1,66 @@
+extend ../../layouts/default
+include ../../mixins/pagination
+
+block main
+    section.detail
+        div(class="container flex" data-id=product.id)
+            .left
+                .main_image
+                    img.slide(src=product.thumbnail)
+                .title-section-2
+                    span Đánh giá sản phẩm
+                if(user)
+                    .judge-comment
+                        .img-profile
+                            span.name-tag #{user.fullname}
+                        form#comment-form(action="", method="post")
+                            input#content(type="text", placeholder="       Nhận xét", name="content")
+                            button#btnComment(type="submit") Gửi
+                div(class="judge mt-2")
+                    div(class="info-profile" id="dsbinhluan")
+                        each comment in comments
+                            div
+                                span(class="name-tag") #{comment.fullname}: 
+                                span(class="prize") #{comment.content}
+                        
+            .right
+                h3 #{product.title}
+                .price
+                    span.font-weight-bold.pricetest Giá:
+                    span.price-amount #{product.priceNew}
+                        span.currency-symbol đ
+                    span.price-amount.old-price #{product.price} <span class="currency-symbol1"> đ</span>
+                p !{product.description} 
+                h5 Number
+                .add.flex1
+                    div(class="product-quantity")
+                        span.btn-quantity.decrease
+                            img(src="/uploads/decrease.svg", alt="")
+                        input(class="text-center quantity-input events-none" type="text", value=1,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" )
+                        span.btn-quantity.increase
+                            img(src="/uploads/increase.svg", alt="")
+                a( href=`javascript:;` data-id=product.id class="button-buy-now mt-4") <i class="fa-solid fa-bag-shopping"></i> Mua hàng ngay
+                    div.contactdetail
+                        a(nh-btn-action="add-cart" href="javascript:;" class="button-add-cart w-100") Thêm vào giỏ
+                        a(href="javascript:;" class="button-hotline  w-100" )
+                            span Liên hệ Hotline:
+                            strong 0775580605
+    .container.suggested-products
+        .suggested-title
+            h4 Sản phẩm bán chạy
+        .suggest-products.mt-3
+            each productRandom in productsRandom
+                a(href=`/detail/${productRandom.slug}`)
+                    .suggest-item
+                        img(class="suggest-item-img" src=productRandom.thumbnail alt=productRandom.title)
+                        img(class="img-ch" src="/uploads/chinhhang.png" alt="")
+                        p.suggest-item-name.mt-1.ms-1 #{productRandom.title}
+                        p.suggest-item-price.ms-1.mt-1 #{productRandom.price}<span style="font-size:14px">đ</span>
+
+    div(id="notificationmethod" class="method")
+        div(class="method-content")
+            p(class="method-text") sản phẩm <span class="method-name-product"></span> đã hết! 
+            div(class="method-actions")
+                button(class="confirmation btn btn-primary") Xác nhận
+    script(src="/js/detail.js") 
+    

@@ -1,0 +1,71 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Thông tin đơn hàng
+    link(rel="stylesheet", href="/css/orderinfo.css")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
+  body
+    include ../../mixins/alert.pug
+    .pt-3.ps-3
+      a.logo(href="/")
+        img(src=settingGeneral.logo, alt)
+      span.info Đơn hàng của bạn
+    .container-fluid.my-5.d-flex.justify-content-center
+      .card.card-1
+        .card-header.bg-white
+          .media.flex-sm-row.flex-column-reverse.justify-content-between
+            .col.my-auto
+              h4.mb-0 Cảm ơn vì đã đặt hàng, #{user ? user.fullname :'No name'}
+        .card-body
+          .row.justify-content-between.mb-3
+            .col-auto
+              h6.color-1.mb-0.change-color Hóa đơn
+            .col-12.d-flex.justify-content-center.align-items-center
+              if (messages.success)
+                div(
+                    class="alert alert-success text-center"
+                    show-alert
+                    data-time=5000
+                )   #{messages.success} <i class="fa-solid fa-xmark" close-alert></i>
+              +alert-error(5000)
+          each order in orders
+            .row.mt-4
+              .col
+                .card
+                  .card-body
+                    .row
+                      .col-12
+                          p Thời gian đặt : 
+                            span #{moment(order.createdAt).format('DD/MM/YYYY HH:mm:ss')}
+                      .col-12
+                        p Họ và tên : 
+                          span #{order.userInfo.fullName}
+                      .col-12
+                        p Số điện thoại : 
+                          span #{order.userInfo.phone}
+                      .col-12
+                        p Địa chỉ : 
+                          span #{order.userInfo.address}
+                      .col-12
+                        p Phương thức thanh toán : 
+                          span
+                            | Thanh toán khi nhận hàng
+                      .col-12
+                        p Đơn hàng của bạn : 
+                          span #{order.orderString}
+                      .col-12
+                        p Tổng tiền : 
+                          span #{order.totalPrice} VND
+                      .col-12
+                        button(class="btn btn-danger" data-id=order.id button-order-delete) Hủy đơn hàng
+    
+                    
+    form(action="", method="post" id="form-delete-order" data-path=`/user/order/delete`) 
+    
+    script(src="/js/user.js")

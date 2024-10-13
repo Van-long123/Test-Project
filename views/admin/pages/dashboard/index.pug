@@ -1,0 +1,118 @@
+extend ../../layouts/default
+block main  
+    //- h1 trang tổng quang
+    .head-title
+        .left
+            h1 Dashboard
+            ul.breadcrumb
+                li
+                    a(href=`${prefixAdmin}/dashboard`) Dashboard
+                li
+                    i.bx.bx-chevron-right
+                li
+                    a.active(href=`${prefixAdmin}/dashboard`) Home
+    ul.box-info
+        .container  
+            .row
+                .col-md-6.product
+                    li
+                        i.bx.bxs-calendar-check
+                        span.text
+                            h3 Danh mục sản phẩm
+                            p Số lượng:<b> #{statistic.categoryProduct.total}</b>
+                            p Hoạt động:<b> #{statistic.categoryProduct.active}</b>
+                            p Dừng hoạt động: <b>#{statistic.categoryProduct.inactive}</b>
+                .col-md-6.product-category
+                    li
+                        i(class='bx bxl-product-hunt')
+                        span.text
+                            h3 Sản phẩm
+                            p Số lượng:<b>#{statistic.product.total}</b>
+                            p Hoạt động:<b>#{statistic.product.active}</b>
+                            p Dừng hoạt động: <b>#{statistic.product.inactive}</b>
+                .col-md-6.user
+                    li
+                        i.bx.bxs-user-circle
+                        span.text
+                            h3 Tài khoản khách hàng
+                            p Số lượng:<b>#{statistic.account.total}</b>
+                            p Hoạt động:<b>#{statistic.account.active}</b>
+                            p Dừng hoạt động: <b>#{statistic.account.inactive}</b>
+                .col-md-6.account
+                    li
+                        i.bx.bxs-group
+                        span.text
+                            h3 Tài khoản admin
+                            p Số lượng:
+                            p Hoạt động:
+                            p Dừng hoạt động:
+                        
+    //- .table-data
+    //-     .order
+    //-         .head
+    //-             h3 Recent Orders
+    //-             i.bx.bx-search
+    //-             i.bx.bx-filter
+        //-     table
+        //-         thead
+        //-             tr
+        //-                 th User
+        //-                 th Date Order
+        //-                 th Status
+        //-         tbody
+        //-             tr
+        //-                 td
+        //-                     img(src="img/people.png")
+        //-                     p John Doe
+        //-                 td 01-10-2021
+        //-                 td
+        //-                     span.status.completed Completed
+        //-             tr
+        //-                 td
+        //-                     img(src="img/people.png")
+        //-                     p John Doe
+        //-                 td 01-10-2021
+        //-                 td
+        //-                     span.status.pending Pending
+        //-             tr
+        //-                 td
+        //-                     img(src="img/people.png")
+        //-                     p John Doe
+        //-                 td 01-10-2021
+        //-                 td
+        //-                     span.status.process Process
+        //-             tr
+        //-                 td
+        //-                     img(src="img/people.png")
+        //-                     p John Doe
+        //-                 td 01-10-2021
+        //-                 td
+        //-                     span.status.pending Pending
+        //-             tr
+        //-                 td
+        //-                     img(src="img/people.png")
+        //-                     p John Doe
+        //-                 td 01-10-2021
+        //-                 td
+        //-                     span.status.completed Completed
+        //- .todo
+        //-     .head
+        //-         h3 Todos
+        //-         i.bx.bx-plus
+        //-         i.bx.bx-filter
+        //-     ul.todo-list
+        //-         li.completed
+        //-             p Todo List
+        //-             i.bx.bx-dots-vertical-rounded
+        //-         li.completed
+        //-             p Todo List
+        //-             i.bx.bx-dots-vertical-rounded
+        //-         li.not-completed
+        //-             p Todo List
+        //-             i.bx.bx-dots-vertical-rounded
+        //-         li.completed
+        //-             p Todo List
+        //-             i.bx.bx-dots-vertical-rounded
+        //-         li.not-completed
+        //-             p Todo List
+        //-             i.bx.bx-dots-vertical-rounded

@@ -1,0 +1,241 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#navbar{
+    margin-top: 10px;
+    width: 100%;
+}
+#logo img{
+    margin-bottom: 10px;
+    width: 100px;
+}
+.nav-item{
+    margin-left: 30px;
+}
+.nav-item .nav-link{
+    color: black;
+    font-weight: bold;
+    transition: 0.5s ease;
+}
+#first-child{
+    color: #ffc800;
+    text-shadow: 1px 1px 1px black;
+}
+.nav-item .nav-link:hover{
+    color: #ffc800;
+    text-shadow: 1px 1px 1px black;
+}
+.searchInput{
+    height: 100%;
+}
+.icons{
+    margin-right: 30px; 
+    font-size: 23px;  
+}
+.icons i{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.icons-cart{
+    
+    position: relative;
+    z-index: 11;
+}
+.bi-cart-check-fill{
+    position: absolute;
+    right: -40px;
+    top: -8px;
+    font-size: 27px; 
+}
+.icons-cart span{
+    position: absolute;
+    top:-6px;
+    right: -47px;
+    font-size: 11px;
+    text-align: center;
+    background-color: rgb(255, 66, 79);
+    color: rgb(255, 255, 255);
+    border-radius: 9px;
+    padding: 0 3px 0 3px;
+}
+.icon-search{
+    position: relative;
+    height: 50px
+}
+.bi-search{
+    position: absolute;
+    right:18px;
+    top: -5px;
+    font-size: 25px;
+}
+.bi-person-fill{
+    position: relative;
+    /* right: -70px; */
+}
+.bi-search{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-search{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-cart-check-fill{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+    margin-top: 0.7rem;
+  }
+  .bi-person-fill{
+    /* color: #FFC800; */
+    color: #38383D;
+    position: absolute;
+    z-index: 100000;
+  }
+.icons-user{
+    position: relative;
+    left: 50px;
+    /* background-color: red; */
+    /* padding: 20px 0; */
+}
+.icon-user{
+    top: -5px;
+}
+.icons-user a i:hover{
+    color: #ffc800;
+}
+.icons-user a i{
+    margin-top: -3px;
+    /* background-color: red; */
+    padding: 5px 2px 5px 7px;
+}
+.icons-user-board{
+    z-index: 10000;
+    position: absolute;
+    top: 50px;
+    width:170px;
+    right:-43px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+.icons-user-board a{
+    text-decoration: none !important;
+    /* border-radius: 5px; */
+    color: #38383D !important;
+    font-size: 15px;
+    display: block;
+    padding: 7px;
+}
+.icons-user-board a:hover{
+    background-color: #ced4da;
+}
+.icons-user:hover .icons-user-board{
+    display: block;
+}
+.icon-search i:hover {
+    color: #fac031;
+}
+.icons-cart i:hover {
+    color: #fac031;
+}
+.btn-bi-search{
+    border: none;
+}
+input[type="search1"]:focus {
+    outline: none;
+    border-color: initial; /* Giữ màu viền mặc định */
+    /* cái màu xanh nớ là box-shadow   */
+    box-shadow: none; /* Loại bỏ bóng khi được chọn */
+    border: 1px solid #cccaca;    
+}
+/* .form-control{
+} */
+/* .icons a{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.icons a:hover{
+    color:  rgb(64, 214, 214);
+}
+.icons i:hover{
+    color:  rgb(64, 214, 214);
+} */
+@media screen and (max-width:982px){
+    .icons{
+        margin-left: 25px;
+}
+}
+.home-section{
+    z-index: 1000;
+    position: fixed;
+   /* background: #ffffff; */
+   /* height: 10vh; */
+   width: 100%;
+}
+.content{
+    position: relative;
+    top: 60px;
+}
+
+
+.addsucces-text{
+    margin: 0;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .fa-circle-check{
+    color: green;
+    margin-right: 4px;
+    font-size: 16px;
+  }
+  .addsucces-actions{
+    background-color: #FF3945;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 4px;
+    margin-top: 15px;
+    /* margin-bottom: 3px; */
+    cursor: pointer;
+  }
+  .addsucces-actions a{
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+  }
+  #addsucces p{
+    margin: 0;
+  }
+  .addsucces-xmark{
+    margin-bottom: 10px;
+  }
+  .fa-xmark{
+    position: absolute;
+    right: 7px;
+    top: 4px;
+    font-size: 17px;
+  }
+  #addsucces{
+    margin-top: 5px;
+    display: none;
+    position: absolute;
+    width: 280px;
+    top: 50px;
+    right: -30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    /* height: 100px; */
+  }
