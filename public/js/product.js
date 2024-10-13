@@ -28,7 +28,8 @@ if(buttonAddCart){
         const quantity=parseInt(quantityInput.value)
         $.ajax({
             type:'post',
-            url:'/order/add',
+            // url:'http://localhost:3000/order/add',
+            url:'https://food-project-alpha.vercel.app/order/add',
             data:{
                 productId:productId,quantity:quantity
             },

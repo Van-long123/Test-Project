@@ -7,7 +7,7 @@ if(btnComment){
         const productId=flex.getAttribute('data-id')
         let content=document.getElementById('content').value;
         $.ajax({
-                url:'/products/comment',
+                url:'https://food-project-alpha.vercel.app/products/comment',
                 type:'POST',
                 data:{
                     productId:productId,
@@ -58,7 +58,7 @@ if(buttonAddCart){
         const quantity=parseInt(quantityInput.value)
         $.ajax({
             type:'post',
-            url:'/order/add',
+            url:'https://food-project-alpha.vercel.app/order/add',
             data:{
                 productId:productId,quantity:quantity
             },
@@ -113,7 +113,7 @@ if (btnPay) {
         e.preventDefault();
         $.ajax({
             type:'POST',
-            url:'/order/checkPay',
+            url:'https://food-project-alpha.vercel.app/order/checkPay',
             data:{
                 productId:productId
             },

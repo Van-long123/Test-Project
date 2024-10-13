@@ -19,7 +19,7 @@ function closeConfirmation() {
 const payCart=document.querySelector('.pay-cart')
 if(payCart){
     payCart.addEventListener('click',e=>{
-        window.location.href='/order/info'
+        window.location.href='https://food-project-alpha.vercel.app/order/info'
     })
 }
 
@@ -30,7 +30,7 @@ if (btnPay) {
         btn.addEventListener('click', (e) => {
             $.ajax({
                 type:'POST',
-                url:'/order/checkPay',
+                url:'https://food-project-alpha.vercel.app/order/checkPay',
                 data:{
                     productId:productId
                 },

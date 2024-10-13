@@ -25,7 +25,7 @@ btnAdd.forEach(btn=>{
         
         $.ajax({
             type:'post',
-            url:'/order/add',
+            url:'https://food-project-alpha.vercel.app/order/add',
             data:{
                 productId:productId
             },
@@ -109,7 +109,7 @@ function showConfirmation(productId){
 let confirmDelete=()=>{
     $.ajax({
         type: 'post',
-        url: '/order/delete',
+        url: 'https://food-project-alpha.vercel.app/order/delete',
         data: { 
             product_id: productIdToDelete,
         },
@@ -163,7 +163,7 @@ increaseBtns.forEach(btn=>{
         const productId=cartProduct.getAttribute('data-id')
         $.ajax({
             type:'post',
-            url:'/order/add',
+            url:'https://food-project-alpha.vercel.app/order/add',
             data:{
                 productId:productId
             },
@@ -209,7 +209,7 @@ decreaseBtns.forEach(btn=>{
             const quantity=parseInt(quantityInput.value)-1
             $.ajax({
                 type:'post',
-                url:'/order/delete',
+                url:'https://food-project-alpha.vercel.app/order/delete',
                 data:{
                     product_id:productId,quantity:quantity
                 },
