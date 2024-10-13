@@ -19,7 +19,7 @@ function closeConfirmation() {
 const payCart=document.querySelector('.pay-cart')
 if(payCart){
     payCart.addEventListener('click',e=>{
-        window.location.href='http://localhost:3000/order/info'
+        window.location.href='/order/info'
     })
 }
 
@@ -30,7 +30,7 @@ if (btnPay) {
         btn.addEventListener('click', (e) => {
             $.ajax({
                 type:'POST',
-                url:'http://localhost:3000/order/checkPay',
+                url:'/order/checkPay',
                 data:{
                     productId:productId
                 },

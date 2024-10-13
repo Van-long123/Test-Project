@@ -28,7 +28,7 @@ if(buttonAddCart){
         const quantity=parseInt(quantityInput.value)
         $.ajax({
             type:'post',
-            url:'http://localhost:3000/order/add',
+            url:'/order/add',
             data:{
                 productId:productId,quantity:quantity
             },
