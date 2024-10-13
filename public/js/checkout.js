@@ -235,12 +235,12 @@ if(btn1a){
         if(checkInfo){
             $.ajax({
                 type:'post',
-                url:'https://food-project-alpha.vercel.app/order/create/checkout',
+                url:'/order/create/checkout',
                 data:data,
                 dataType:'json',
                 success:function(response){
                     if(response.code){
-                        window.location.href='https://food-project-alpha.vercel.app/order/checkout?code='+response.code
+                        window.location.href='/order/checkout?code='+response.code
                     }
                 },
                 error:function(error){

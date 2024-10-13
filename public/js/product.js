@@ -29,7 +29,7 @@ if(buttonAddCart){
         $.ajax({
             type:'post',
             // url:'http://localhost:3000/order/add',
-            url:'https://food-project-alpha.vercel.app/order/add',
+            url:'/order/add',
             data:{
                 productId:productId,quantity:quantity
             },
