@@ -30,7 +30,7 @@ if (btnPay) {
         btn.addEventListener('click', (e) => {
             $.ajax({
                 type:'POST',
-                url:'https://food-project-alpha.vercel.app/order/checkPay',
+                url:'/order/checkPay',
                 data:{
                     productId:productId
                 },
