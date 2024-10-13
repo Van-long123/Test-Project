@@ -3,9 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-#navbar{
-    margin-top: 10px;
-    width: 100%;
+nav.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10000000 !important;
+    background-color: white; 
 }
 #logo img{
     margin-bottom: 10px;
