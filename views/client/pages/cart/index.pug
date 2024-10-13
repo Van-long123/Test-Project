@@ -23,7 +23,7 @@ block main
                                     .cart-body
                                         .cart-item
                                             img(class="mx-2 mr-5" src=cart.productInfo.thumbnail alt=cart.productInfo.title)
-                                            a(href=cart.productInfo.slug ) #{cart.productInfo.title}
+                                            a(href=`detail/${cart.productInfo.slug}`) #{cart.productInfo.title}
                                         .cart-gia
                                             span.price-amount #{cart.productInfo.priceNew}
                                                 span.currency-symbol đ
