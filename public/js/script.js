@@ -247,3 +247,45 @@ if(confirmation){
 
 // notificationmethod
 
+// search suggest 
+const boxSearch=document.querySelector('.box-search')
+if(boxSearch){
+    console.log(boxSearch)
+    const input=boxSearch.querySelector('input[name="search"]')
+    const boxSuggest=boxSearch.querySelector('.inner-suggest')
+    input.addEventListener('keyup',e=>{
+        const keyword=input.value
+        const link=`/search/suggest?keyword=${keyword}`
+        fetch(link)
+            .then(res=>{
+                return res.json()
+            })
+            .then(data=>{
+                if(data.code==200){
+                    const products=data.products
+                    if(products.length>0){
+                        boxSuggest.classList.add('show')
+                        const htmls=products.map(product=>{
+                            return `
+                                <a class="inner-item" href="/detail/${product.slug}">
+                                    <div class="inner-image"><img src=${product.thumbnail} /></div>
+                                    <div class="inner-info">
+                                        <div class="inner-title">${product.title}</div>
+                                    </div>
+                                </a>
+                            `
+                        })
+                        
+                        const boxList=boxSuggest.querySelector('.inner-list')
+                        boxList.innerHTML=htmls.join('') 
+                        // console.log(htmls.join(''))biến mảng thành chuỗi
+                    }
+                    else{
+                        boxSuggest.classList.remove('show')
+                    }
+                    
+                }
+            })
+    })
+}
+// search suggest 

@@ -7,10 +7,20 @@ nav.navbar.navbar-expand-lg
         aria-label="Toggle navigation") <i style="font-size: 35px;" class="bi bi-list i"></i>
         div(class="collapse navbar-collapse" id="navbarSupportedContent")
             .d-flex.w-100.icons(role="search")
-                .icon-search.d-flex.w-100
+                .icon-search.d-flex.w-100.box-search
                     form.icon-search.d-flex.w-100.rounded(action="/products", method="get")
                         input.form-control.me-2.searchInput.w-100.border(style="height: 100%;", name="search", type="text", placeholder="Search", aria-label="Search" value=search)
                         button(style="border: none;", type="submit") <i style="font-size: 25px;" class="bi bi-search"></i> 
+                
+                    .inner-suggest
+                        .inner-list
+                            a(href="/songs/detail/:slugSong" class="inner-item")
+                                .inner-image
+                                    img(src="https://backend.daca.vn/assets/images/cat-doi-noi-sau.jpg")
+                                .inner-info
+                                    .inner-title Cắt đôi nỗi sầu
+
+
                 .icons-cart
                     a(href="/order/cart-info") <i style="font-size: 27px; "class="bi bi-cart-check-fill"></i>
                     span.countsp #{totalCart ? totalCart: 0}
@@ -20,7 +30,7 @@ nav.navbar.navbar-expand-lg
                         p.addsucces-text
                             i(class="fa-solid fa-circle-check" ) 
                             |Thêm vào giỏ hàng thành công!
-                        .addsucces-actions
+                        .addsucces-actionsinner-suggest
                             a(href="/order/cart-info") Xem giỏ hàng và thanh toán
                 .icons-user
                     a(href="/user/login")
