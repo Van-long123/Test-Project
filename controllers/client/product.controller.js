@@ -3,6 +3,7 @@ const Product=require("../../model/product.model");
 const User=require("../../model/user.model");
 const Comment=require("../../model/comment.model");
 const searchHelper=require("../../helpers/search")
+const convertToSlugHelper=require("../../helpers/convertToSlug")
 const productsHelper=require("../../helpers/product");
 const paginationHelper=require("../../helpers/pagination");
 module.exports.index=async(req,res)=>{
@@ -14,7 +15,13 @@ module.exports.index=async(req,res)=>{
     let search=""
     if(req.query.search){
         search=(req.query.search).trim();
-        find.title=new RegExp(search,'i')
+        const stringSLug=convertToSlugHelper.convertToSlug(search)
+        const SlugRegex=new RegExp(stringSLug,'i')
+        const keywordRegex=new RegExp(search,'i')
+        find['$or']=[
+            {title:keywordRegex},
+            {slug:SlugRegex}
+        ]
     }
     //end search
     //  Pagination 
