@@ -44,7 +44,8 @@ module.exports.register=(req,res)=>{
     res.render('client/pages/user/register',{title:"Đăng ký tài khoản"})
 }
 module.exports.registerPost=async(req,res)=>{
-    const existEmail=await User.findOne({email:req.body.email})
+    const existEmail=await User.findOne({email:req.body.email,deleted:false,
+        status:'active'})
     if(existEmail){
         const {email,fullname,address,phone}=req.body
         // const {email,password}=req.body
@@ -78,7 +79,8 @@ module.exports.forgotPasswordPost=async(req,res)=>{
     //ngoaì ra nên kiểm tra trong forgotpassword đã có bản ghi về email đó chưa nếu rồi
     // thì hiênj thông báo lên sau3 phút mới có để tránh spam
     const email = req.body.email
-    const user=await User.findOne({email:email})
+    const user=await User.findOne({email:email,deleted:false,
+        status:'active'})
     if(!user){
         req.flash('emailError', `Email không tồn tại`);
         req.flash('emailValue', email);
