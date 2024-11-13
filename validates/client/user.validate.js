@@ -69,11 +69,13 @@ module.exports.resetPasswordPost=(req,res,next)=>{
     }
     if(!req.body.confirmPassword){
         req.flash('confirmError', `Vui lòng nhập xác nhận mật khẩu`);
+        req.flash('passValue',req.body.password)
         res.redirect(`back`);
         return;//phải thêm return để code ở dưới ko chạy vì js bất động bộ
     }
     if(req.body.password!=req.body.confirmPassword){
         req.flash('confirmError', `Mật khẩu không khớp`);
+        req.flash('passValue',req.body.password)
         res.redirect(`back`);
         return;//phải thêm return để code ở dưới ko chạy vì js bất động bộ
     }
