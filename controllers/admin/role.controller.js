@@ -29,7 +29,7 @@ module.exports.edit=async(req,res)=>{
         const id=req.params.id
         const record=await Role.findOne({_id:id,deleted:false})
         res.render('admin/pages/roles/edit',{
-        title:'Tạo nhóm quyền',
+        title:'Cập nhật nhóm quyền',
         record:record
         })
     } catch (error) {
