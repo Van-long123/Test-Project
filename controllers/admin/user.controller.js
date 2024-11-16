@@ -141,7 +141,7 @@ module.exports.edit=async(req,res)=>{
             _id:req.params.id,deleted:false
         })
         res.render('admin/pages/users/edit',{
-            title:'Cập nhật sản phẩm',
+            title:'Cập nhật tài khoản',
             data:data,
         })
     } catch (error) {
