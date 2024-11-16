@@ -3,7 +3,8 @@ include ../../mixins/alert.pug
 block main 
     if(role.permissions.includes("accounts_edit"))
         h1 Chỉnh sửa mới tài khoản
-        +alert-error(5000) 
+        +alert-success(5000)
+        +alert-error(5000)
         form(
             action=`${prefixAdmin}/accounts/edit/${data.id}?_method=PATCH`,
             method="POST"
