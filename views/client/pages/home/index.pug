@@ -52,9 +52,9 @@ block main
                                             h4.product-title
                                                 a(href=`detail/${product.slug}`)   #{product.title}
                                             .price
-                                                span.price-amount #{product.priceNew}
+                                                span.price-amount #{product.priceNew.toLocaleString('vi-VN')}
                                                     span.currency-symbol đ
-                                                span.price-amount.old-price #{product.price} <span class="currency-symbol1">đ</span>
+                                                span.price-amount.old-price #{product.price.toLocaleString('vi-VN')} <span class="currency-symbol1">đ</span>
                                             //- a(href=`/order/info?id=${product.id}` class="btn btn-pay mt-2 ") Mua ngay
                                             //- button.btn.btn-pay.mt-2(data-id="{{$value->id}}") Mua ngay
                                             button(data-id=product.id class="btn btn-pay mt-2 ") Mua ngay
