@@ -25,11 +25,13 @@ module.exports.loginPost=async(req,res)=>{
     const user=await Account.findOne({email:email,deleted:false})
     if(!user){
         req.flash('error', `Email không tồn tại`);
+        req.flash('emailValue', req.body.email);
         res.redirect('back')
         return;
     }
     if(md5(password)!=user.password){
-        req.flash('error', `Sai mật khẩu  `);
+        req.flash('error', `Sai mật khẩu`);
+        req.flash('emailValue', req.body.email);
         res.redirect('back')
         return;
     }
