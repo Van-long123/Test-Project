@@ -25,7 +25,7 @@ block main
                                             img(class="mx-2 mr-5" src=cart.productInfo.thumbnail alt=cart.productInfo.title)
                                             a(href=`/detail/${cart.productInfo.slug}`) #{cart.productInfo.title}
                                         .cart-gia
-                                            span.price-amount #{cart.productInfo.priceNew}
+                                            span.price-amount #{cart.productInfo.priceNew.toLocaleString('vi-VN')}
                                                 span.currency-symbol đ
                                         div(class="product-quantity")
                                             span.btn-quantity.decrease-btn
@@ -34,7 +34,7 @@ block main
                                             span.btn-quantity.increase-btn
                                                 img(src="/uploads/increase.svg", alt="")
                                         .cart-tt
-                                            span.price-amount #{cart.productInfo.totalPrice}
+                                            span.price-amount #{cart.productInfo.totalPrice.toLocaleString('vi-VN')}
                                                 span.currency-symbol đ
                                         .cart-img
                                             span.trash
@@ -50,7 +50,7 @@ block main
                             .cart-sidebar-bottom
                                 p Tổng tiền
                                 span.total.total-money
-                                    span.price-amount #{cartDetail.totalPrice}
+                                    span.price-amount #{cartDetail.totalPrice.toLocaleString('vi-VN')}
                                         span.currency-symbol đ
                             .cart-sidebar-btn
                                 button(class="pay-cart") Xác nhận giỏ hàng
@@ -73,7 +73,7 @@ block main
                         img(class="suggest-item-img" src=productRandom.thumbnail alt=productRandom.title)
                         img(class="img-ch" src="/uploads/chinhhang.png" alt="")
                         p.suggest-item-name.mt-1.ms-1 #{productRandom.title}
-                        p.suggest-item-price.ms-1.mt-1 #{productRandom.price}<span style="font-size:14px">đ</span>
+                        p.suggest-item-price.ms-1.mt-1 #{productRandom.price.toLocaleString('vi-VN')}<span style="font-size:14px">đ</span>
     div(id="confirmationModal" class="modal")
         div(class="modal-content" style="width: 25%")
             p <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Xóa sản phẩm

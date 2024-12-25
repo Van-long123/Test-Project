@@ -34,18 +34,18 @@ block main
                       div(class="quantity") Số lượng: <strong>#{cart.quantity}</strong>
                       div(class="price-quantity")
                         span(class="price-amount1 mx-0")
-                          |#{cart.productInfo.totalPrice}
+                          |#{cart.productInfo.totalPrice.toLocaleString('vi-VN')}
                           span(class="currency-symbol") đ
           div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
             div(class="d-flex justify-content-between")
               span Đơn giá
               span(class="text-right price-amount1")
-                |#{orderInfo.totalPrice}
+                |#{orderInfo.totalPrice.toLocaleString('vi-VN')}
                 span(class="currency-symbol") đ
             div(class="separation-dash mt-3 mb-3")
             iv(class="d-flex justify-content-between mb-15")
               span Thành tiền
               span(class="text-right price-amount1")
-                |#{orderInfo.totalPrice}
+                |#{orderInfo.totalPrice.toLocaleString('vi-VN')}
                 span(class="currency-symbol") đ
   //- script(src="/js/checkout.js") 

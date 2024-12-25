@@ -59,7 +59,7 @@ block main
                         div(class="quantity") Số lượng: <strong>#{cart.quantity}</strong>
                         div(class="price-quantity")
                           span(class="price-amount1 mx-0")
-                            |#{cart.productInfo.totalPrice}
+                            |#{cart.productInfo.totalPrice.toLocaleString('vi-VN')}
                             span(class="currency-symbol") đ
               else  
                 div(class="product-element-top  py-10 space-5" data_id=product.id)        
@@ -74,19 +74,19 @@ block main
                         div(class="quantity") Số lượng: <strong>1</strong>
                         div(class="price-quantity")
                           span(class="price-amount1 mx-0")
-                            |#{product.priceNew}
+                            |#{product.priceNew.toLocaleString('vi-VN')}
                             span(class="currency-symbol") đ
           div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
             div(class="d-flex justify-content-between")
               span Đơn giá
               span(class="text-right price-amount1")
-                |#{product ? product.priceNew : cartDetail.totalPrice}
+                |#{product ? product.priceNew.toLocaleString('vi-VN') : cartDetail.totalPrice.toLocaleString('vi-VN')}
                 span(class="currency-symbol") đ
             div(class="separation-dash mt-3 mb-3")
             iv(class="d-flex justify-content-between mb-15")
               span Thành tiền
               span(class="text-right price-amount1")
-                |#{product ? product.priceNew : cartDetail.totalPrice}
+                |#{product ? product.priceNew.toLocaleString('vi-VN') : cartDetail.totalPrice.toLocaleString('vi-VN')}
                 span(class="currency-symbol") đ
             button(class="bg-main btn btn-1a color-white rounded py-10 px-20 w-100 mt-2 mb-2") Thanh toán
             a(href="/order/cart-info" class="color-main ") 
