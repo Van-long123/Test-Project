@@ -30,7 +30,7 @@ block main
                                         div(class="product-quantity")
                                             span.btn-quantity.decrease-btn
                                                 img(src="/uploads/decrease.svg", alt="")
-                                            input(class="text-center quantity-input events-none" disabled type="text", value=cart.quantity,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" )
+                                            input(class="text-center quantity-input events-none" disabled type="text", value=cart.quantity,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" min='1' max=cart.stock )
                                             span.btn-quantity.increase-btn
                                                 img(src="/uploads/increase.svg", alt="")
                                         .cart-tt
