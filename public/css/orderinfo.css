@@ -1,85 +1,204 @@
+/* General styles */
 body {
-    min-height: 100vh;
-    background-size: cover;
-    background-color: #f4f4f4; /* Thay đổi màu nền */
-    font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto */
-    color: rgba(116, 116, 116, 0.667);
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    color: #2d3436;
 }
 
-.container-fluid {
-    margin-top: 100px; /* Điều chỉnh khoảng cách phía trên */
-}
-
-.order {
-    position: relative;
-    margin-top: 30px; /* Thay đổi khoảng cách để tránh quá sát */
-}
-
-p {
-    font-size: 15px; /* Tăng kích thước font */
-    margin-bottom: 8px; /* Tăng khoảng cách giữa các đoạn */
-}
-
-.small {
-    letter-spacing: 0.5px !important;
-}
-
-.card-1 {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Tạo bóng cho thẻ */
-    border-radius: 10px; /* Bo góc cho thẻ */
-}
-
-.card-body {
-    padding: 20px; /* Tăng padding cho card body */
-}
-
-hr {
-    background-color: rgba(248, 248, 248, 0.667);
-    height: 1px; /* Tăng chiều cao của đường ngang */
-    margin: 20px 0; /* Thêm khoảng cách cho đường ngang */
-}
-
-.change-color {
-    color: #AB47BC !important;
-}
-
-h4, h6 {
-    font-weight: bold; /* Đặt font-weight cho tiêu đề */
-    color: #333; /* Đặt màu tiêu đề */
-}
-
-h4 {
-    font-size: 22px; /* Tăng kích thước cho h4 */
-}
-
-h6 {
-    font-size: 18px; /* Tăng kích thước cho h6 */
-}
-
+/* Logo and header section */
 .logo img {
-    width: 120px;
-    height: auto; /* Đảm bảo hình ảnh có chiều cao tự động */
-    padding-right: 10px;
+    height: 50px;
+    object-fit: contain;
 }
 
 .info {
-    border-left: 2px solid #AB47BC; /* Thay đổi màu và độ dày đường viền */
-    padding-left: 15px; /* Tăng khoảng cách bên trái */
-    height: 20px;
-    font-size: 22px; /* Tăng kích thước font */
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: 500;
+    color: #2d3436;
     position: relative;
-    top: 15px; /* Tăng khoảng cách từ trên xuống */
+    top: 10px;
 }
 
-@media (max-width: 700px) {
-    h2 {
-        font-size: 18px; /* Thay đổi kích thước tiêu đề trên màn hình nhỏ */
+/* Card styles */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-1 {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.card-header {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Text styles */
+.color-1 {
+    color: #2d3436;
+}
+
+.change-color {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Order details */
+.card p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #636e72;
+}
+
+.card p span {
+    color: #2d3436;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+/* Status styles */
+.status {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #ffeaa7;
+    color: #fdcb6e;
+}
+
+.status-processing {
+    background-color: #81ecec;
+    color: #00cec9;
+}
+
+.status-completed {
+    background-color: #55efc4;
+    color: #00b894;
+}
+
+.status-cancelled {
+    background-color: #ff7675;
+    color: #d63031;
+}
+
+/* Button styles */
+.btn-danger {
+    background-color: #ff7675;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #d63031;
+    transform: translateY(-2px);
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.alert-success {
+    background-color: #55efc4;
+    color: #00b894;
+    border: 1px solid #00b894;
+}
+
+.alert .fa-xmark {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.alert .fa-xmark:hover {
+    opacity: 1;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .card-1 {
+        margin: 0 15px;
+    }
+
+    .card-header {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .info {
+        font-size: 1.2rem;
     }
 }
 
-@media (max-width: 479px) {
-    .invoice {
-        position: relative;
-        top: 7px;
+/* Responsive improvements */
+@media (max-width: 576px) {
+    .logo img {
+        height: 40px;
     }
+
+    .info {
+        font-size: 1rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Print styles */
+@media print {
+
+    .btn-danger,
+    form#form-delete-order {
+        display: none;
+    }
+
+    .card {
+        box-shadow: none;
+    }
+
+    .status {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+.status-Initit {
+  background-color: #b0b0b0; /* Xám nhạt */
+}
+
+.status-Confirm {
+  background-color: #4db8ff; /* Xanh dương nhạt */
+}
+
+.status-Shipped {
+  background-color: #ffcc00; /* Vàng */
+}
+
+.status-Delivered {
+  background-color: #66cc66; /* Xanh lá cây */
 }

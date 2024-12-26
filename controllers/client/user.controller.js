@@ -148,6 +148,14 @@ module.exports.resetPasswordPost=async(req,res)=>{
     res.redirect('back')
 }
 module.exports.order=async (req,res)=>{
+    // status text 
+    const statusMap = {
+        "Initit": "Đang xử lý",
+        "Confirm": "Đã xác nhận",
+        "Shipped": "Đang vận chuyển",
+        "Delivered": "Đã giao",
+    };
+// status text
     // làm thanh toán xong làm lại order 
     try {
         const cartId=req.cookies.cartId;
@@ -168,6 +176,7 @@ module.exports.order=async (req,res)=>{
                 return sum+parseInt(item.priceNew*item.quantity)
             },0)
             
+            order.statusText= statusMap[order.status]
         }
         res.render('client/pages/user/order',{
             title:'Thông tin đơn hàng',

@@ -7,12 +7,12 @@ module.exports=(query)=>{
         },
         {
             name:"Đang chờ xử lý",
-            status:"initit",
+            status:"Initit",
             class:""
         },
         {
             name:"Đã xác nhận",
-            status:"confirm",
+            status:"Confirm",
             class:""
         },
         {

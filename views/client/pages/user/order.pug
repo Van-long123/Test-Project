@@ -63,6 +63,9 @@ html(lang="en")
                         p Tổng tiền : 
                           span #{order.totalPrice} VND
                       .col-12
+                        p Trạng thái : 
+                          span.status(class=`status-${order.status}`) #{order.statusText}
+                      .col-12
                         button(class="btn btn-danger" data-id=order.id button-order-delete) Hủy đơn hàng
     
                     
