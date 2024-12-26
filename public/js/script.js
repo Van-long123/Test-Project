@@ -138,8 +138,8 @@ let confirmDelete=()=>{
                 
                 const cartProduct=document.querySelector(`.cart-product[data-id="${productIdToDelete}"]`);
                 let price_product=cartProduct.querySelector('.cart-tt .price-amount').textContent.slice(0,-1)
-                let newPrice=parseInt(totalMoney.textContent.slice(0,-1)) - parseInt(price_product);
-                totalMoney.innerHTML = newPrice+'<span class="currency-symbol">đ</span>';
+                let newPrice=parseFloat(totalMoney.textContent.slice(0,-1)) - parseFloat(price_product);
+                totalMoney.innerHTML = newPrice.toFixed(3)+'<span class="currency-symbol">đ</span>';
                 const countProduct=parseInt(countsp.textContent)
                 countsp.textContent=countProduct-1
                 
@@ -176,14 +176,15 @@ increaseBtns.forEach(btn=>{
                 else{
                     const quantityInput=cartProduct.querySelector('.quantity-input')
                     const quantity=parseInt(quantityInput.value)+1
+                    
                     quantityInput.value=quantity;
-                    const price_product=parseInt(cartProduct.querySelector('.cart-gia .price-amount').textContent.slice(0,-1))
+                    const price_product=parseFloat(cartProduct.querySelector('.cart-gia .price-amount').textContent.slice(0,-1))
                     const newPrice=price_product*quantity
                     const priceAmount=cartProduct.querySelector('.cart-tt .price-amount')
-                    priceAmount.innerHTML = newPrice+'<span class="currency-symbol">đ</span>';
+                    priceAmount.innerHTML = newPrice.toFixed(3)+'<span class="currency-symbol">đ</span>';
     
                     const newTotalMoney = parseFloat(totalMoney.textContent.slice(0,-1)) + price_product;
-                    totalMoney.innerHTML = newTotalMoney+'<span class="currency-symbol">đ</span>';
+                    totalMoney.innerHTML = newTotalMoney.toFixed(3)+'<span class="currency-symbol">đ</span>';
                 }
                 
 
@@ -217,13 +218,13 @@ decreaseBtns.forEach(btn=>{
                 success:function(response){
                     
                     quantityInput.value=quantity;
-                    const price_product=parseInt(cartProduct.querySelector('.cart-gia .price-amount').textContent.slice(0,-1))
+                    const price_product=parseFloat(cartProduct.querySelector('.cart-gia .price-amount').textContent.slice(0,-1))
                     const newPrice=price_product*quantity
                     const priceAmount=cartProduct.querySelector('.cart-tt .price-amount')
-                    priceAmount.innerHTML = newPrice+'<span class="currency-symbol">đ</span>';
+                    priceAmount.innerHTML = newPrice.toFixed(3)+'<span class="currency-symbol">đ</span>';
     
                     const newTotalMoney = parseFloat(totalMoney.textContent.slice(0,-1)) - price_product;
-                    totalMoney.innerHTML = newTotalMoney+'<span class="currency-symbol">đ</span>';
+                    totalMoney.innerHTML = newTotalMoney.toFixed(3)+'<span class="currency-symbol">đ</span>';
     
                 },
                 error :function(error){
