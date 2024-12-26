@@ -199,6 +199,7 @@ module.exports.checkoutPost=async (req,res)=>{
         cartId:cartId,
         userInfo:user_info,
         products:products,
+        status:'initit'
     }
     // console.log(order_info)
     if(res.locals.user){

@@ -6,13 +6,24 @@ module.exports=(query)=>{
             class:""
         },
         {
-            name:"Đang khởi tạo",
+            name:"Đang chờ xử lý",
             status:"initit",
             class:""
         },
         {
             name:"Đã xác nhận",
             status:"confirm",
+            class:""
+        },
+        {
+            name:"Đang vận chuyển",
+            status:"Shipped",
+            class:""
+        }
+        ,
+        {
+            name:"Đã giao",
+            status:"Delivered",
             class:""
         }
     ]

@@ -60,20 +60,24 @@ block main
                                 td #{item.nameProduct}
                                 td 
                                     if(role.permissions.includes("orders_edit"))
-                                        if(item.status == 'initit')
-                                            a(
-                                                href="javascript:;"
-                                                data-status=item.status
-                                                data-id=item.id
-                                                button-change-status
-                                                class="badge badge-danger") #{item.status}
-                                        else
-                                            a(
-                                                href="javascript:;"
-                                                data-status=item.status
-                                                data-id=item.id
-                                                button-change-status
-                                                class="badge badge-success") #{item.status}
+                                        select(name="status" button-change-status data-id=item.id) 
+                                            each item1 in fillterStatus
+                                                if(item1.status)
+                                                    option(value=item1.status selected=item.status==item1.status?true:false) #{item1.status}
+                                        //- if(item.status == 'initit')
+                                        //-     a(
+                                        //-         href="javascript:;"
+                                        //-         data-status=item.status
+                                        //-         data-id=item.id
+                                        //-         button-change-status
+                                        //-         class="badge badge-danger") #{item.status}
+                                        //- else
+                                        //-     a(
+                                        //-         href="javascript:;"
+                                        //-         data-status=item.status
+                                        //-         data-id=item.id
+                                        //-         button-change-status
+                                        //-         class="badge badge-success") #{item.status}
                                     else
                                         if(item.status == 'initit')
                                             a(

@@ -715,3 +715,34 @@ label {
 	}
 }
 /* //login */
+
+/* Phong cách cho dropdown */
+select[name="status"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select[name="status"]:focus {
+    border-color: #007BFF; /* Màu xanh khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    background-color: #fff;
+}
+
+/* Phong cách cho các tùy chọn */
+select[name="status"] option {
+    padding: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Tùy chỉnh hover cho dropdown */
+select[name="status"] option:hover {
+    background-color: #007BFF;
+    color: #fff;
+}

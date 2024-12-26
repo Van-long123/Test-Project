@@ -1,18 +1,26 @@
 //change-status
-const buttonChangeStatus=document.querySelectorAll('[button-change-status]')
+const buttonChangeStatus=document.querySelector('[button-change-status]')
 if(buttonChangeStatus){
     const formChangeStatus=document.querySelector('#form-change-status')
     const path=formChangeStatus.getAttribute('data-path')
-    buttonChangeStatus.forEach(btn=>{
-        btn.addEventListener('click',e=>{
-            const statusCurrent=btn.getAttribute('data-status')
-            const id=btn.getAttribute('data-id')
-            const statusChange=statusCurrent=="initit"?'confirm':'initit'
-            const action=path+`/${statusChange}/${id}?_method=PATCH`
-            formChangeStatus.action=action
-            formChangeStatus.submit()
-        })
+    buttonChangeStatus.addEventListener('change',e=>{
+        console.log(e.target.value)
+        const statusChange=e.target.value
+        const id=buttonChangeStatus.getAttribute('data-id')
+        const action=path+`/${statusChange}/${id}?_method=PATCH`
+        formChangeStatus.action=action
+        formChangeStatus.submit()
     })
+    // buttonChangeStatus.forEach(btn=>{
+    //     btn.addEventListener('click',e=>{
+    //         const statusCurrent=btn.getAttribute('data-status')
+    //         const id=btn.getAttribute('data-id')
+    //         const statusChange=statusCurrent=="initit"?'confirm':'initit'
+    //         const action=path+`/${statusChange}/${id}?_method=PATCH`
+    //         formChangeStatus.action=action
+    //         formChangeStatus.submit()
+    //     })
+    // })
 }
 //change-status
 //delete-item
