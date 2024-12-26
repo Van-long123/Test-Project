@@ -123,7 +123,7 @@ body {
 
 .alert .fa-xmark {
     position: absolute;
-    right: 1rem;
+    /* right: 1rem; */
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
@@ -202,3 +202,4 @@ body {
 .status-Delivered {
   background-color: #66cc66; /* Xanh lá cây */
 }
+

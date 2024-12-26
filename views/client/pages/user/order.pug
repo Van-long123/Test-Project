@@ -14,7 +14,7 @@ html(lang="en")
     include ../../mixins/alert.pug
     .pt-3.ps-3
       a.logo(href="/")
-        img(src=settingGeneral.logo, alt)
+        img(src=settingGeneral.logo, style="margin-left:40px")
       span.info Đơn hàng của bạn
     .container-fluid.my-5.d-flex.justify-content-center
       .card.card-1
@@ -30,9 +30,9 @@ html(lang="en")
               if (messages.success)
                 div(
                     class="alert alert-success text-center"
-                    show-alert
-                    data-time=5000
-                )   #{messages.success} <i class="fa-solid fa-xmark" close-alert></i>
+                    show-alert1
+                    data-time=55000
+                )   #{messages.success} <i class="fa-solid fa-xmark" close-alert1></i>
               +alert-error(5000)
           each order in orders
             .row.mt-4
