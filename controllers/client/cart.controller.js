@@ -305,7 +305,7 @@ module.exports.checkoutPost=async (req,res)=>{
 // ngrok tạo đường hầm giữ local và internet giúp người khác có thể truy cập local của ta 
 // gõ lệnh để pulic ra cho zalopay có thể gọi đến lệnh: ngrok http 3000
 // Forwarding  https://1f83-14-185-184-127.ngrok-free.app -> http://localhost:3000   
-            callback_url:"https://1f83-14-185-184-127.ngrok-free.app/callback"
+            callback_url:"https://fusion-food.vercel.app/callback"
         };
 
         // appid|app_trans_id|appuser|amount|apptime|embeddata|item
