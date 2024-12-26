@@ -1,10 +1,13 @@
 extend ../../layouts/default
 include ../../mixins/pagination
+include ../../mixins/alert
 
 block main
     section.detail
         div(class="container flex" data-id=product.id)
+            
             .left
+                +alert-error-forgot(5000)
                 .main_image
                     img.slide(src=product.thumbnail)
                 .title-section-2
@@ -36,10 +39,10 @@ block main
                     div(class="product-quantity")
                         span.btn-quantity.decrease
                             img(src="/uploads/decrease.svg", alt="")
-                        input(class="text-center quantity-input events-none" type="text", value=1,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" )
+                        input(class="text-center quantity-input events-none" type="text", value=1,  oninput="this.value = this.value.replace(/[^0-9]/g,'');" min="1" max=product.stock)
                         span.btn-quantity.increase
                             img(src="/uploads/increase.svg", alt="")
-                a( href=`javascript:;` data-id=product.id class="button-buy-now mt-4") <i class="fa-solid fa-bag-shopping"></i> Mua hàng ngay
+                a( href=`javascript:;` data-id=product.slug class="button-buy-now mt-4") <i class="fa-solid fa-bag-shopping"></i> Mua hàng ngay
                     div.contactdetail
                         a(nh-btn-action="add-cart" href="javascript:;" class="button-add-cart w-100") Thêm vào giỏ
                         a(href="javascript:;" class="button-hotline  w-100" )

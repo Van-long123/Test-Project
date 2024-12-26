@@ -71,7 +71,7 @@ block main
                       div(class="top-name-right")
                         div(class="name-element font-weight-bold")
                           a(href=`/detail/${product.slug}`) #{product.title}
-                        div(class="quantity") Số lượng: <strong>1</strong>
+                        div(class="quantity") Số lượng: <strong>#{product.quantity || 1}</strong>
                         div(class="price-quantity")
                           span(class="price-amount1 mx-0")
                             |#{product.priceNew.toLocaleString('vi-VN')}

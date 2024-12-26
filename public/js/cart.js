@@ -26,13 +26,13 @@ if(payCart){
 const btnPay = document.querySelectorAll('.btn-pay');
 if (btnPay) {
     btnPay.forEach(btn=>{
-        const productId=btn.getAttribute('data-id')
+        const slug=btn.getAttribute('data-id')
         btn.addEventListener('click', (e) => {
             $.ajax({
                 type:'POST',
                 url:'/order/checkPay',
                 data:{
-                    productId:productId
+                    slug:slug
                 },
                 dataType:'json',
                 success:function(response){
@@ -41,7 +41,7 @@ if (btnPay) {
                     }
                     else{
 
-                        window.location.href=`/order/info?id=${productId}`
+                        window.location.href=`/order/info/${slug}`
                     }
                 },
                 error :function(error){

@@ -108,23 +108,35 @@ if(buttonAddCart){
 
 const btnPay = document.querySelector('.button-buy-now');
 if (btnPay) {
-    const productId=btnPay.getAttribute('data-id')
+    const slug=btnPay.getAttribute('data-id')
     btnPay.addEventListener('click', (e) => {
+        const quantity=parseInt(document.querySelector('.quantity-input').value)
         e.preventDefault();
         $.ajax({
             type:'POST',
             url:'/order/checkPay',
             data:{
-                productId:productId
+                slug:slug,quantity:quantity
             },
             dataType:'json',
             success:function(response){
                 if(response.error){
-                    document.getElementById("notificationmethod").style.display = "block";
+                    if(response.error!='error'){
+                        console.log(response.error)
+                        document.querySelector(".method-text").textContent=response.error
+                        document.getElementById("notificationmethod").style.display = "block";
+                    }
+                    else{
+                        document.getElementById("notificationmethod").style.display = "block";
+                    }
+                    
                 }
                 else{
-
-                    window.location.href=`/order/info?id=${productId}`
+                    let url = `/order/info/${slug}`;
+                    if(quantity>1){
+                        url=url+`?quantity=${quantity}`
+                    }
+                    window.location.href=url
                 }
             },
             error :function(error){
@@ -133,3 +145,4 @@ if (btnPay) {
         })
     });
 }
+

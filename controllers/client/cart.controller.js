@@ -44,18 +44,57 @@ module.exports.index=async(req,res)=>{
 
 }
 module.exports.checkPay=async (req,res)=>{
-    const product_id=req.body.productId;
+    let response={
+        success:'success',
+    }
+    const slug=req.body.slug;
+    
+    const cartId=req.cookies.cartId
+    const cart=await Cart.findOne({_id:cartId})
+
     const product= await Product.findOne({
-        _id:product_id
+        slug:slug
     }).select('stock')
+
+    const existsProductInCart=cart.products.find(item=>{
+        return item.product_id==product.id
+    })
+
+
+    let quantity=1
+    if(req.body.quantity){
+        quantity=parseInt(req.body.quantity)
+    }
+
     if(product.stock==0){
-        return res.json({
+         res.json({
             error:'error',
         })
+        return;
     }
-    return res.json({
-        success:'success',
-    })
+
+    if(product.stock<quantity){
+        res.json({
+            error:'Số lượng bạn chọn quá hàng trong kho',
+        })
+        return;
+    }
+    if(existsProductInCart){
+        
+        if(product.stock<existsProductInCart.quantity+1){
+            res.json({
+                error:'error',
+            })
+            return;
+        }
+        if(product.stock<existsProductInCart.quantity+quantity){
+            res.json({
+                error:'Số lượng bạn chọn quá hàng trong kho',
+            })
+            return;
+        }
+    }
+    return res.json(response)
 }
 module.exports.add=async(req,res)=>{
     let response={
@@ -84,7 +123,13 @@ module.exports.add=async(req,res)=>{
         })
         return;
     }
-    //10 11
+    //7 8 
+    if(product.stock<quantity){
+        res.json({
+            error:'Số lượng bạn chọn quá hàng trong kho',
+        })
+        return;
+    }
     if(existsProductInCart){
         
         if(product.stock<existsProductInCart.quantity+1){
@@ -322,7 +367,7 @@ module.exports.creatCheckout=async (req,res)=>{
     })
 }
 module.exports.info=async (req,res)=>{
-    if(!req.query.id){
+    if(!req.params.slug){
         var cart=await Cart.findOne({_id:req.cookies.cartId})
         if(cart.products.length>0){
             for (const item of cart.products) {
@@ -338,13 +383,31 @@ module.exports.info=async (req,res)=>{
         }
     }
     else{
-        var product=await Product.findOne({_id:req.query.id}).select('title price discountPercentage thumbnail slug stock')
+        var product=await Product.findOne({slug:req.params.slug}).select('title price discountPercentage thumbnail slug stock')
         if(product.stock==0){
             req.flash('stockError','Sản phẩm đã bán hết')
             res.redirect('back')
             return 
         }
         product.priceNew=productsHelper.priceNew(product)
+        
+        //6 6 
+        
+        if(req.query.quantity){
+            product.quantity=parseInt(req.query.quantity)
+        }
+        else{
+            product.quantity=1
+        }
+        console.log(product.quantity)
+        console.log(product.stock)
+        console.log(product.stock<product.quantity)
+        if(product.stock<product.quantity){
+            req.flash('error','Số lượng bạn chọn quá hàng trong kho')
+            res.redirect(`/detail/${req.params.slug}`)
+            return;
+        }
+        
     }
 
     res.render('client/pages/checkout/info',{
