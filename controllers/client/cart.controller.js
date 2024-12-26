@@ -4,6 +4,19 @@ const Cart=require("../../model/cart.model");
 const Order=require("../../model/order.model");
 const Generate=require("../../helpers/generate");
 const productsHelper=require("../../helpers/product");
+const axios = require('axios').default; // npm install axios
+const CryptoJS = require('crypto-js'); // npm install crypto-js
+const moment = require('moment'); // npm install moment
+
+// này là môi trường Sandbox có sẵn rồi 
+// sau tích hợp với ứng dụng thật thì thay đổi các giá trị đó  Real	https://openapi.zalopay.vn/v2/create
+const config = {
+    app_id:process.env.APP_ID,
+    key1: process.env.KEY1,
+    key2: process.env.KEY2,
+    endpoint:process.env.ENDPOINT
+};
+
 module.exports.index=async(req,res)=>{
     const productsRandom = await Product.aggregate([
         { $match: { deleted: false, status: 'active' } },  // Lọc các bản ghi phù hợp
@@ -170,16 +183,17 @@ module.exports.checkout=async (req,res)=>{
     res.render('client/pages/checkout/index',{title:"Thanh toán đơn hàng",orderInfo:orderInfo})
 }
 module.exports.checkoutPost=async (req,res)=>{
-    const orderInfo=await OrderInfo.findOne({code:req.query.code})
+    
+    const infoOrder=await OrderInfo.findOne({code:req.query.code})
     
     const user_info={
-        fullName:orderInfo.userInfo.fullname,
-        phone:orderInfo.userInfo.phone,
-        address:orderInfo.userInfo.address+', '+orderInfo.userInfo.province+', '+orderInfo.userInfo.district+', '+orderInfo.userInfo.ward,
+        fullName:infoOrder.userInfo.fullname,
+        phone:infoOrder.userInfo.phone,
+        address:infoOrder.userInfo.address+', '+infoOrder.userInfo.province+', '+infoOrder.userInfo.district+', '+infoOrder.userInfo.ward,
     }
     const cartId=req.cookies.cartId;
     const products=[]
-    for (const product of orderInfo.products) {
+    for (const product of infoOrder.products) {
         let productId=product.product_id;
         let quantity=product.quantity || 1;
         await Product.findOneAndUpdate({_id:productId},{$inc:{stock:- quantity}})
@@ -195,6 +209,9 @@ module.exports.checkoutPost=async (req,res)=>{
         objectProduct.discountPercentage=productInfo.discountPercentage
         products.push(objectProduct)
     }
+    const priceTotal=parseFloat(products.reduce((total,item)=>{
+        return total+=item.price*(1-(item.discountPercentage/100))*item.quantity
+    },0).toFixed(3))
     const order_info={
         cartId:cartId,
         userInfo:user_info,
@@ -205,15 +222,70 @@ module.exports.checkoutPost=async (req,res)=>{
     if(res.locals.user){
         order_info.user_id=res.locals.user.id
     }
-    const order=new Order(order_info)
-    await order.save()
-    
     if(!req.query.code.includes('ORDO')){
-        await Cart.updateOne({_id:cartId},{products:[]})
+        order_info.existCart=true
     }
+    if(req.body.payment_method==0){
+        if(order_info.existCart){
+            await Cart.updateOne({_id:cartId},{products:[]})
+            delete order_info.existCart
+        }
+        const order=new Order(order_info)
+        await order.save()
+        
+        
+        res.redirect('/user/order')
+    }
+    else if(req.body.payment_method==2){
+        // redirecturl Redirect về url này sau khi thanh toán trên cổng ZaloPay
+        const embed_data = {
+            redirecturl:"http://localhost:3000/user/order"
+        };
 
-    res.redirect('/user/order')
+        // const items = [{}];
+        const items = [order_info];
+
+        const transID = Math.floor(Math.random() * 1000000);
+        const order = {
+            app_id: config.app_id,
+            app_trans_id: `${moment().format('YYMMDD')}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
+            app_user: "FustionFood",
+            app_time: Date.now(), // miliseconds
+            item: JSON.stringify(items),
+            embed_data: JSON.stringify(embed_data),
+            amount: priceTotal,
+            description: `Lazada - Payment for the order #${transID}`,
+            bank_code: "",
+            // zalo nó ko thể gọi tới http://localhost:3000/ này đc ta phải cài 
+// ngrok tạo đường hầm giữ local và internet giúp người khác có thể truy cập local của ta 
+// gõ lệnh để pulic ra cho zalopay có thể gọi đến lệnh: ngrok http 3000
+// Forwarding  https://1f83-14-185-184-127.ngrok-free.app -> http://localhost:3000   
+            callback_url:"https://1f83-14-185-184-127.ngrok-free.app/callback"
+        };
+
+        // appid|app_trans_id|appuser|amount|apptime|embeddata|item
+        const data = config.app_id + "|" + order.app_trans_id + "|" + order.app_user + "|" + order.amount + "|" + order.app_time + "|" + order.embed_data + "|" + order.item;
+        order.mac = CryptoJS.HmacSHA256(data, config.key1).toString();
+
+        try {
+            const result=await axios.post(config.endpoint, null, { params: order })
+            // console.log(result.data);
+            res.redirect(result.data.order_url)
+        } catch (error) {
+            console.log(error.message);
+            
+        }
+        // axios.post(config.endpoint, null, { params: order })
+        // .then(res => {
+        //     console.log(res.data);
+        // })
+        // .catch(err => console.log(err));
+        // }
+    
+    }
 }
+//khi mà thanh toán thành công sẽ gọi tới api nfay
+
 module.exports.creatCheckout=async (req,res)=>{
     const ids =req.body.products.split(', ')
     let products=[];

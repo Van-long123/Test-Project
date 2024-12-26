@@ -23,6 +23,7 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 // TinyMCE 
 
 // flash 
+app.use(express.json());
 app.use(cookieParser('DSADSADSF'));
 app.use(session({ cookie: { maxAge: 60000 }}));//thời gian cookie tồn tại 1 phút
 app.use(flash());

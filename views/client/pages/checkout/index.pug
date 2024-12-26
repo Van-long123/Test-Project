@@ -14,8 +14,10 @@ block main
                 p(class="mb-0") Địa chỉ: <strong>#{orderInfo.userInfo.address}, #{orderInfo.userInfo.province}, #{orderInfo.userInfo.district}, #{orderInfo.userInfo.ward}</strong>
           div(class="payment-method mb-10 bg-white rounded p-15 mt-2 form-group")
             form(id="form-checkout"  method="post") 
-              select(name="payment-method" class="form-control")
+              select(name="payment_method" class="form-control")
                 option(value="0") Thanh toán tiền mặt khi nhận hàng
+                //- option(value="1") Thanh toán bằng MOMO
+                option(value="2") Thanh toán bằng ZaloPay
               button(class="bg-main btn btn-1a payment-now color-white rounded py-10 px-20 w-100 mt-2") Thanh toán ngay
         .col-5
           div(class="order-review bg-white rounded p-15 mb-10")
