@@ -110,6 +110,25 @@ nav.navbar {
     /* background-color: red; */
     /* padding: 20px 0; */
 }
+.icons-block{
+    position: relative;
+    width: 200px;
+    top: 6px;
+    left: 108px;
+    text-decoration: none ;
+}
+.icons-block a{
+    color: #282828;
+    /* left: -10px !important; */
+    right: 0px;
+    text-decoration: none !important;
+}
+.icons-block a:hover{
+    color: #ffc800;
+}
+.icons-block a span {
+    font-size: 18px;
+}
 .icon-user{
     top: -5px;
 }
