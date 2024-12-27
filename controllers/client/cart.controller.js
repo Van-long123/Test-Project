@@ -284,7 +284,7 @@ module.exports.checkoutPost=async (req,res)=>{
     else if(req.body.payment_method==2){
         // redirecturl Redirect về url này sau khi thanh toán trên cổng ZaloPay
         const embed_data = {
-            redirecturl:"http://localhost:3000/user/order"
+            redirecturl:"https://fusion-food.vercel.app/user/order"
         };
 
         // const items = [{}];
