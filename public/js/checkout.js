@@ -5,7 +5,11 @@ fetch('https://provinces.open-api.vn/api/?depth=3')
     .then(data=>{
         let provinces=data
         for (const province of provinces) {
-            document.getElementById('provinces').innerHTML+=`<option value="${province.code}">${province.name}</option>`
+            console.log(province.code)
+            console.log(province.name)
+            if(province.code==48){
+                document.getElementById('provinces').innerHTML+=`<option value="${province.code}">${province.name}</option>`
+            }
             // ko += là nó thằng sau sẽ ghi đè thằng trước còn có là nó ko ghi đề mà sẽ thêm vào
             // document.getElementById('provinces').innerHTML=`<option value="${province.name}">${province.name}</option>`
         }
