@@ -141,6 +141,26 @@ nav.navbar {
     right: 0px;
     text-decoration: none !important;
 }
+/* Nút Xóa */
+.price-options a span {
+    display: inline-block;
+    background-color: #dc3545; /* Màu nền đỏ */
+    color: white; /* Màu chữ trắng */
+    padding: 5px 10px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Bo tròn góc */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: 600; /* Đậm chữ */
+    text-align: center; /* Căn giữa chữ */
+    cursor: pointer; /* Con trỏ chuột hiển thị khi hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+/* Hiệu ứng khi hover */
+.price-options a span:hover {
+    background-color: #c82333; /* Đậm màu đỏ khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ */
+}
+
 .icons-block a:hover{
     color: #ffc800;
 }

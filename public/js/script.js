@@ -291,3 +291,14 @@ if(boxSearch){
 }
 // search suggest 
 
+// sidebar-filter
+const priceOptionLink=document.querySelectorAll('.price-option-link')
+if(priceOptionLink.length > 0){
+    priceOptionLink.forEach(item=>{
+        item.addEventListener('click',e=>{
+            const redirect=item.getAttribute('nh-link-redirect')
+            console.log(redirect)
+        })
+    })
+}
+// sidebar-filter
