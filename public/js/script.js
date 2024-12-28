@@ -294,11 +294,35 @@ if(boxSearch){
 // sidebar-filter
 const priceOptionLink=document.querySelectorAll('.price-option-link')
 if(priceOptionLink.length > 0){
+    let url=new URL(window.location.href)
     priceOptionLink.forEach(item=>{
         item.addEventListener('click',e=>{
-            const redirect=item.getAttribute('nh-link-redirect')
-            console.log(redirect)
+            const dataFrom=item.getAttribute('data-from')
+            const dataTo=item.getAttribute('data-to')
+            if(dataFrom&&dataTo){
+                url.searchParams.set('price_from', dataFrom);
+                url.searchParams.set('price_to', dataTo);
+            }
+            else{
+                url.searchParams.delete('price_from')
+                url.searchParams.delete('price_to')
+            }
+            window.location.href=url.href
         })
     })
+    const priceFrom = url.searchParams.get('price_from')
+    const priceTo = url.searchParams.get('price_to')
+    if(priceFrom&&priceTo){
+        priceOptionLink.forEach(item=>{
+            const  dataFrom=item.getAttribute('data-from')
+            const dataTo=item.getAttribute('data-to')
+            // item.dataset.from;
+            if(dataFrom==priceFrom && priceTo==dataTo){
+                item.querySelector('input').checked=true
+            }
+        })
+    }
 }
+
+
 // sidebar-filter

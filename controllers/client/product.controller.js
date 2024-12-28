@@ -11,6 +11,12 @@ module.exports.index=async(req,res)=>{
         deleted:false,
         status:'active'
     }
+    if(req.query.price_from&&req.query.price_to){
+        find.price={
+            $gte:req.query.price_from,
+            $lte:req.query.price_to
+        }
+    }
     //Search
     let search=""
     if(req.query.search){
@@ -54,6 +60,12 @@ module.exports.featured=async(req,res)=>{
         status:'active',
         featured:'1'
     }
+    if(req.query.price_from&&req.query.price_to){
+        find.price={
+            $gte:req.query.price_from,
+            $lte:req.query.price_to
+        }
+    }
     //  Pagination 
     const countProducts=await Product.countDocuments(find)
     const objectPagination=paginationHelper(req.query,countProducts,{
@@ -79,25 +91,32 @@ module.exports.featured=async(req,res)=>{
 }
 module.exports.category=async(req,res)=>{
     try {
+        let find={
+            deleted:false,
+            status:'active',
+        }
+        if(req.query.price_from&&req.query.price_to){
+            find.price={
+                $gte:req.query.price_from,
+                $lte:req.query.price_to
+            }
+        }
         const category=await ProductCategory.findOne({slug:req.params.slugCategory,status:"active",deleted:false})
         const productsCategory=await ProductCategory.find({
             deleted:false,
             status:"active",
             
         })
-        const countProducts=await Product.countDocuments({
-            product_category_id:category.id,
-            deleted:false,
-            status:"active"})
+        if(category){
+            find.product_category_id=category.id
+        }
+        
+        const countProducts=await Product.countDocuments(find)
         const objectPagination=paginationHelper(req.query,countProducts,{
             currentPage:1,
             limitItems:12
         })
-        const products=await Product.find({
-            product_category_id:category.id,
-            deleted:false,
-            status:"active",
-        }).limit(objectPagination.limitItems).skip(objectPagination.skip)
+        const products=await Product.find(find).limit(objectPagination.limitItems).skip(objectPagination.skip)
         const newProducts=productsHelper.priceNewproduct(products);
         res.render('client/pages/products/index',{
             title:"Danh sách sản phẩm",
@@ -106,7 +125,7 @@ module.exports.category=async(req,res)=>{
             pagination:objectPagination
         })
     } catch (error) {
-        
+        res.redirect('/')
     }
     
 }

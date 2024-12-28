@@ -65,6 +65,7 @@ module.exports.checkPay=async (req,res)=>{
     if(req.body.quantity){
         quantity=parseInt(req.body.quantity)
     }
+    
     if(product.stock==0){
          res.json({
             error:'error',
@@ -317,7 +318,7 @@ module.exports.checkoutPost=async (req,res)=>{
             res.redirect(result.data.order_url)
         } catch (error) {
             console.log(error.message);
-            
+            res.redirect('/')
         }
         // axios.post(config.endpoint, null, { params: order })
         // .then(res => {
