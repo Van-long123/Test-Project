@@ -39,21 +39,21 @@ block main
                                 div(class="price-filter")
                                     h4(class="price-title") Mức giá
                                     div(class="price-options")
-                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=0&price_to=50000`) 
+                                        a(href="javascript:;" class="price-option-link" data-from="0" data-to="50000") 
                                             div(class="price-option")
-                                                input(type="checkbox" id="price1" class="price-checkbox price-option-checkbox" data-from="0" data-to="50000")
+                                                input(type="checkbox" id="price1" class="price-checkbox price-option-checkbox" )
                                                 label(for="price1") Dưới 50 ngàn
-                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=50000&price_to=100000`) 
+                                        a(href="javascript:;" class="price-option-link" data-from="50000" data-to="100000") 
                                             div(class="price-option")
-                                                input(type="checkbox" id="price2" class="price-checkbox price-option-checkbox" data-from="50000" data-to="100000")
+                                                input(type="checkbox" id="price2" class="price-checkbox price-option-checkbox" )
                                                 label(for="price2") 50 đến 100 ngàn
-                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=100000&price_to=150000`) 
+                                        a(href="javascript:;" class="price-option-link" data-from="100000" data-to="150000") 
                                             div(class="price-option")
-                                                input(type="checkbox" id="price3" class="price-checkbox price-option-checkbox" data-from="100000" data-to="150000")
+                                                input(type="checkbox" id="price3" class="price-checkbox price-option-checkbox" )
                                                 label(for="price3") 100 đến 150 ngàn
-                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=150000&price_to=150000000`) 
+                                        a(href="javascript:;" class="price-option-link" data-from="150000" data-to="15000000") 
                                             div(class="price-option")
-                                                input(type="checkbox" id="price4" class="price-checkbox price-option-checkbox" data-from="150000" data-to="150000000")
+                                                input(type="checkbox" id="price4" )
                                                 label(for="price4") Trên 150 ngàn
                                         a(href="javascript:;" nh-link-redirect=`/products${type ? '/type' : '' }`) 
                                             span Xóa
