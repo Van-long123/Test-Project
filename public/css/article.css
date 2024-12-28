@@ -5,12 +5,13 @@ header.articles {
     align-items: center;
     margin-bottom: 30px;
 }
+
 a{
     text-decoration: none !important;
 }
-a:hover{
+/* a:hover{
     color: #f0a500 !important;
-}
+} */
 .site-title {
     font-size: 24px;
     font-weight: bold;
@@ -52,7 +53,12 @@ a:hover{
     line-height: 1.5;
     margin-bottom: 10px;
 }
-
+.article-content a {
+    color: #212529;
+}
+.article-content a:hover {
+    color: #212529;
+}
 .article-meta {
     display: flex;
     gap: 15px;
@@ -61,7 +67,7 @@ a:hover{
 }
 
 .read-more {
-    color: #f0a500;
+    color: #f0a500 !important;
     text-decoration: none;
 }
 
@@ -93,7 +99,12 @@ a:hover{
     font-size: 16px;
     margin-bottom: 5px;
 }
-
+.recent-post-content a {
+    color: #212529;
+}
+.recent-post-content a:hover {
+    color: #212529;
+}
 .recent-post-date {
     color: #888;
     font-size: 14px;
