@@ -33,7 +33,31 @@ block main
                                         a.nav-link.text-black.a-sidebar(href=`/products/${category.slug}`)
                                             img(class="nav-sidebar-img" src=category.thumbnail alt="category image") 
                                             span #{category.title}
-                                
+                        div(class="sidebar-filter mt-3 mb-5") 
+                            div(class="filter-section")
+                                h3(class="filter-title") Bộ lọc 
+                                div(class="price-filter")
+                                    h4(class="price-title") Mức giá
+                                    div(class="price-options")
+                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=0&price_to=50000`) 
+                                            div(class="price-option")
+                                                input(type="checkbox" id="price1" class="price-checkbox" )
+                                                label(for="price1") Dưới 50 ngàn
+                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=50000&price_to=100000`) 
+                                            div(class="price-option")
+                                                input(type="checkbox" id="price2" class="price-checkbox" )
+                                                label(for="price2") 50 đến 100 ngàn
+                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=100000&price_to=150000`) 
+                                            div(class="price-option")
+                                                input(type="checkbox" id="price3" class="price-checkbox" )
+                                                label(for="price3") 100 đến 150 ngàn
+                                        a(href="javascript:;" class="price-option-link" nh-link-redirect=`/products${type ? '/type' : '' }?price_from=150000&price_to=150000000`) 
+                                            div(class="price-option")
+                                                input(type="checkbox" id="price4" class="price-checkbox" )
+                                                label(for="price4") Trên 150 ngàn
+                                        a(href="javascript:;" nh-link-redirect=`/products${type ? '/type' : '' }`) 
+                                            span Xóa 
+
                     .content.col-lg-9
                         .container-fluid
                             .row

@@ -84,6 +84,60 @@
     margin-left: 3px;
 }
 /* sidebar menu  */
+.sidebar-filter {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.filter-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.price-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.price-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.price-options a{
+    text-decoration: none !important;
+}
+.price-option label {
+    margin-top: 7px !important;
+} 
+.price-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.price-option label {
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Hover effects */
+.price-option:hover label {
+    color: #007bff;
+}
+
 /* menu  */
 .fs-4{
     margin-top: 10px;
@@ -96,7 +150,6 @@
     margin-left: 20px;
     color: black;
     border: 1px solid #ced4da;
-    height: 100%;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     /* height: auto; */
@@ -121,6 +174,59 @@
     margin: 1px 0 1px 0;
     transition:linear 1;
 }
+.sidebar {
+    margin-left: 20px;
+    color: black;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100% !important;
+}
+
+/* Danh mục (Category) */
+.sidebar .d-flex {
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ced4da; /* Tạo đường phân cách */
+}
+
+/* Bộ lọc (Filter) */
+.sidebar-filter {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-filter .filter-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.price-filter {
+    margin-top: 10px;
+}
+
+.price-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.price-checkbox {
+    margin-right: 5px;
+}
+
+/* Đảm bảo giao diện trên màn hình nhỏ */
+@media screen and (max-width: 991px) {
+    .sidebar {
+        display: none;
+    }
+}
+
 .nav-sidebar a{
     text-decoration: none;
     color: #000;
