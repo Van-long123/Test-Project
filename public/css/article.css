@@ -1,0 +1,241 @@
+
+header.articles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+a{
+    text-decoration: none !important;
+}
+a:hover{
+    color: #f0a500 !important;
+}
+.site-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.article-card {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.article-image {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.article-content h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.article-content p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.article-meta {
+    display: flex;
+    gap: 15px;
+    color: #888;
+    font-size: 14px;
+}
+
+.read-more {
+    color: #f0a500;
+    text-decoration: none;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.recent-post {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.recent-post img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.recent-post-content h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.recent-post-date {
+    color: #888;
+    font-size: 14px;
+}
+
+.Footer1{
+    /* background-color: rgba(241, 236, 236,0.4); */
+    margin-top: 0px !important;
+    padding: 25px 0 25px 0;
+    /* margin-top: 0; */
+}
+.Footer-content {
+    margin-left: 86px;
+    color: #939393;
+    line-height: 30px;
+}
+.Footer-content p{
+    text-transform: capitalize;
+    margin: 0;
+}
+.Footer-icons{
+    margin: -12px;
+}
+.Footer-social a{
+    text-decoration: none;
+    margin-bottom: 5px;
+    margin-left: 100px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.Footer-social a:hover{
+    color: black;
+    text-decoration: none;
+}
+.Footer-icons a i span{
+    margin-left: 8px;
+    font-size: 15px;
+    color: #939393;
+}
+.Footer-images{
+    margin: -15px;
+    margin-left: 10px;
+    display: flex;
+}
+.image-qr img{
+    width: 120px;
+}
+.image-app img{
+    display: flex;
+    flex-direction: column;
+}
+.app-image{
+    display: flex;
+}
+.image-app-two{
+    margin-left: 34px;
+    width: 28px;
+    margin-top: 18px;
+}
+.image-app-one{
+    width: 28px;
+    height: 28px;
+    margin-left: 34px;
+    margin-top: 15px;
+}
+.app-image span{
+    margin-left: 5px;
+    margin-top: 18px;
+}
+.footer-bootom{
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
+}
+.footer-bootom p{
+    color: black;
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+    font-size: 14px;
+}
+.footer-bootom p span{
+    margin: 0 30px 0 30px;
+}
+.footer-bootom-image p{
+    margin-top: 20px;
+    display: block;
+}
+.footer-bootom-image img{
+    width: 150px;
+}
+/* @media screen and (max-width:991px) {
+    .sidebar {
+        display: none;
+    }
+} */
+.h6{
+    text-align: center;
+}
+@media screen and (max-width:991px){
+    .footer-bootom{
+        display: none;
+    }
+    .Footer-body{
+        margin-bottom: 10px;
+    }
+    .h6{
+        margin-bottom: 10px;
+        
+    }
+    .Footer-body:nth-child(3){
+        margin-left: -17px;
+    }
+}
+@media screen and (max-width:767px){
+    .h6{
+        margin-bottom: 10px;
+        text-align: start;
+    }
+    /* .Footer-body:nth-child(2){
+        margin-left: -20px;
+    } */
+}
+/* 992 */
+@media screen and (max-width:767px){
+    .h6{
+        margin-bottom: 10px;
+        text-align: start;
+    }
+    /* .Footer-body:nth-child(2){
+        margin-left: -20px;
+    } */
+}
+@media (min-width:992px) and (max-width:1024px) {
+    .Footer-content{
+        margin-left: 27px;  
+    }
+    .Footer-icons{
+        margin-left: -60px;
+    }
+}
