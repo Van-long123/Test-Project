@@ -1,0 +1,41 @@
+const mongoose= require('mongoose')
+const slug =require('mongoose-slug-updater')
+mongoose.plugin(slug)
+const articleSchema=new mongoose.Schema({
+    title:String,
+    shorDescription:String,
+    content:String,
+    thumbnail:String,
+    status:String,
+    featured:String,
+    position:Number,
+    slug:{
+        type:String,
+        slug:'title',
+        unique:true
+    },
+    deleted:{
+        type:Boolean,
+        default:false
+    },
+    createdBy:{
+        acoount_id:String,
+        createdAt:{
+            type:Date,
+            default:Date.now
+        }
+    },
+    deleteBy:{
+        account_id:String,
+        deletedAt:Date
+    },
+    updatedBy:[
+        {
+            account_id:String,
+            updatedAt:Date
+        }
+    ]
+
+})
+const Article = mongoose.model('Article',articleSchema,'articles')
+export default Article
