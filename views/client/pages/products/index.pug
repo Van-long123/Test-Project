@@ -79,8 +79,8 @@ block main
                                                     span.price-amount #{product.priceNew.toLocaleString('vi-VN')}
                                                         span.currency-symbol đ
                                                     span.price-amount.old-price #{product.price.toLocaleString('vi-VN')} <span class="currency-symbol1">đ</span>
-                                                
-                                                a(href=`/order/info?id=${product.id}` class="btn btn-pay mt-2 ") Mua ngay
+                                                button(data-id=product.slug class="btn btn-pay mt-2 ") Mua ngay
+                                                //- a(href=`/order/info/${product.slug}` class="btn btn-pay mt-2 ") Mua ngay
                             .row.mt-3
                                 .col-12.text-center
                                     +pagination(pagination)
@@ -94,3 +94,4 @@ block main
             p(class="method-text") sản phẩm <span class="method-name-product"></span> đã hết! 
             div(class="method-actions")
                 button(class="confirmation btn btn-primary") Xác nhận
+    script(src="/js/cart.js") 

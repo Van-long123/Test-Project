@@ -65,7 +65,6 @@ module.exports.checkPay=async (req,res)=>{
     if(req.body.quantity){
         quantity=parseInt(req.body.quantity)
     }
-
     if(product.stock==0){
          res.json({
             error:'error',
