@@ -42,7 +42,7 @@ module.exports.index= async (req,res)=>{
             _id:record.createdBy.account_id
         })
         if(user){
-            record.fullName=user.fullname
+            record.fullname=user.fullname
         }
         const updateBy=record.updatedBy[record.updatedBy.length-1]
         if(updateBy){
