@@ -27,7 +27,7 @@ module.exports.index=async (req,res)=>{
     else{
         sort.position='desc'
     }
-    const countCategories=ArticleCategory.countDocuments(find)
+    const countCategories=await ArticleCategory.countDocuments(find)
     const objectPagination=pagination(req.query,countCategories,{
         currentPage:1,
         limitItems:7
