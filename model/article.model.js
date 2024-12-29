@@ -9,6 +9,7 @@ const articleSchema=new mongoose.Schema({
     status:String,
     featured:String,
     position:Number,
+    article_category_id:String,
     slug:{
         type:String,
         slug:'title',
@@ -38,4 +39,4 @@ const articleSchema=new mongoose.Schema({
 
 })
 const Article = mongoose.model('Article',articleSchema,'articles')
-export default Article
+module.exports= Article
