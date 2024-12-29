@@ -5,6 +5,10 @@ const pagination=require('../../helpers/pagination');
 const systemConfig=require('../../config/system')
 const Account = require("../../model/account.model");
 module.exports.index= async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_view")){
+        return;
+    }
     let find={
         deleted:false
     }
@@ -60,6 +64,10 @@ module.exports.index= async (req,res)=>{
 }
 
 module.exports.changeStatus=async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_edit")){
+        return;
+    }
     const id=req.params.id;
     const status=req.params.status;
     const updatedBy={
@@ -75,6 +83,10 @@ module.exports.changeStatus=async (req,res)=>{
     res.redirect('back');
 }
 module.exports.deleteItem=async(req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_delete")){
+        return;
+    }
     const id=req.params.id;
     const deletedBy={
         account_id:res.locals.user.id,
@@ -89,6 +101,10 @@ module.exports.deleteItem=async(req,res)=>{
     res.redirect('back');
 }
 module.exports.detail=async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_view")){
+        return;
+    }
     try {
         const id=req.params.id;
         const article=await Article.findOne({
@@ -106,6 +122,10 @@ module.exports.detail=async (req,res)=>{
 }
 
 module.exports.changeMulti=async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_edit")){
+        return;
+    }
     const type=req.body.type;
     const ids=req.body.ids.split(', ');
     const updatedBy={
@@ -165,7 +185,12 @@ module.exports.create=async (req,res)=>{
         title:'Tạo bài viết',
     })
 }
+
 module.exports.createPost=async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_create")){
+        return;
+    }
     if(req.body.position==''){
         const count=await Article.countDocuments({})
         req.body.position=count+1
@@ -200,6 +225,10 @@ module.exports.edit=async (req,res)=>{
     }
 }
 module.exports.editPatch=async (req,res)=>{
+    const permissions=res.locals.role.permissions
+    if(!permissions.includes("articles_edit")){
+        return;
+    }
     try {
         if(req.body.position==''){
             const count=await Article.countDocuments({})
