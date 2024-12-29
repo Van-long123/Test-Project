@@ -1,23 +1,26 @@
 extend ../../layouts/default
 include ../../mixins/alert.pug
 block main
-    if (articlesCategory.title) 
-        h1(class="mb-4") #{articlesCategory.title}
-    if (articlesCategory.thumbnail)
-        div(class="mb-4")
-            img(
-            src=articlesCategory.thumbnail
-            style="width: 100px"
-            )
-    if (articlesCategory.status)
-        div(class="mb-4")
-            span Status:
-            if (articlesCategory.status === "active")
-                span(class="badge badge-success") Hoạt động
-            else
-                span(class="badge badge-danger") Dừng hoạt động
-    if (articlesCategory.position) 
-        div(class="mb-4") Vị trí: <b>#{articlesCategory.position}</b>
-    if (articlesCategory.description)
-        div(class="mb-4") !{articlesCategory.description}
-    a(href=`${prefixAdmin}/articles-category/edit/${articlesCategory.id}` class="btn btn-warning btn-sm ml-1") Chỉnh sửa
+    if(role.permissions.includes("articles_category_view"))
+        if (articlesCategory.title) 
+            h1(class="mb-4") #{articlesCategory.title}
+        if (articlesCategory.thumbnail)
+            div(class="mb-4")
+                img(
+                src=articlesCategory.thumbnail
+                style="width: 100px"
+                )
+        if (articlesCategory.status)
+            div(class="mb-4")
+                span Status:
+                if (articlesCategory.status === "active")
+                    span(class="badge badge-success") Hoạt động
+                else
+                    span(class="badge badge-danger") Dừng hoạt động
+        if (articlesCategory.position) 
+            div(class="mb-4") Vị trí: <b>#{articlesCategory.position}</b>
+        if (articlesCategory.description)
+            div(class="mb-4") !{articlesCategory.description}
+        a(href=`${prefixAdmin}/articles-category/edit/${articlesCategory.id}` class="btn btn-warning btn-sm ml-1") Chỉnh sửa
+    else
+        img(src="/uploads/5206817.jpg", alt="Unauthorization" style="width:1000px;height:600px")
