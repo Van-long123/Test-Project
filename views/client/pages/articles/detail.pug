@@ -3,41 +3,36 @@ html(lang="en")
     head
         title #{title}
         meta(charset="UTF-8")
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/nav.css")
-        link(rel="stylesheet", href="/css/article.css")
-        //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/css/detailArticle.css")
         link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet")
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css")
         link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css")
         link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous")
     body
         include ../../partials/header
-        .container.mb-5
-            .row 
-                header.articles
-                    div(class="site-title") Bài Viết Thức Ăn
-                main(class="main-content")
-                    div(class="article-list")
-                        article(class="article-card")
-                            a(href="") 
-                                img(src="https://res.cloudinary.com/dm5pbyp9g/image/upload/v1728136296/ztozbqtnht7bsuelrwzs.webp" alt="Perfume article" class="article-image")
-                            div(class="article-content")
-                                a(href="") 
-                                    h2 PHÂN BIỆT CÁC LOẠI NỒNG ĐỘ NƯỚC HOA
-                                p Nồng độ tinh dầu trong nước hoa là gì? Eau de Parfum, Eau de Toilette... là gì? Đó là những cụm từ để phân biệt nồng độ nước hoa.
-                                div(class="article-meta")
-                                    span 07/12/2024
-                                    a(href="#" class="read-more") XEM THÊM
-                    aside(class="sidebar")
-                        h2(class="sidebar-title") Tin mới
-                        div(class="recent-post")
-                            a(href="") 
-                                img(src="https://res.cloudinary.com/dm5pbyp9g/image/upload/v1728136296/ztozbqtnht7bsuelrwzs.webp" alt="Recent post")
-                            div(class="recent-post-content")
-                                a(href="") 
-                                    h3 Giới thiệu về nước hoa NARCISO RODRIGUEZ
-                                div(class="recent-post-date") 13/12/2024
+        div(class="container mt-4 detail-article")
+            div(class="row")
+                div(class="col-lg-8 main-content")
+                    h1(class="text-warning") #{article.title}
+                    div(class="meta-info mb-3")
+                        small(class="text-muted") #{moment(article.createdBy.createdAt).format('HH:mm DD/MM/YYYY')} <b> DANH SÁCH BÀI VIẾT </b>
+                    b !{article.shortDescription}
+                    p !{article.content}
+                div(class="col-lg-4")
+                    div(class="sidebar p-4")
+                        h3(class="sidebar-title") Tin mới
+                        
+                        each item in articles
+                            div(class="news-item d-flex")
+                                a(href=`/articles/${item.slug}`)
+                                    img(src=item.thumbnail alt=item.title class="mr-3")
+                                div
+                                    h5(class="mb-1") 
+                                        a(href=`/articles/${item.slug}` class="text-dark") #{item.title}
+                                    div(class="news-date")  #{moment(item.createdBy.createdAt).format('DD/MM/YYYY')}
+
                             
         include ../../partials/footer
         script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js")

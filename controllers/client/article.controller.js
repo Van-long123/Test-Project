@@ -17,3 +17,25 @@ module.exports.index=async(req,res)=>{
         articles:articles
     })
 }
+module.exports.detail=async(req,res)=>{
+    try {
+        const article=await Article.findOne({
+            deleted:false,
+            slug:req.params.slug
+        })
+        const articles =await Article.find({
+            deleted: false,
+            featured:"1"
+        }).sort({
+           ' createdBy.createdAt': 'desc'
+        }).limit(6)
+        const slug=req.params.slug
+        res.render('client/pages/articles/detail',{
+            title:article.title,
+            articles:articles,
+            article:article
+        })
+    } catch (error) {
+        res.redirect('back')
+    }
+}

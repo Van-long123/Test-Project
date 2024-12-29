@@ -21,24 +21,24 @@ html(lang="en")
                     div(class="article-list")
                         each item in articlesFeatured
                             article(class="article-card")
-                                a(href="") 
+                                a(href=`/articles/${item.slug}`) 
                                     img(src=item.thumbnail alt=item.title class="article-image")
                                 div(class="article-content")
-                                    a(href=item.slug) 
+                                    a(href=`/articles/${item.slug}`) 
                                         h2 #{item.title}
                                     p !{item.shortDescription}
                                     div(class="article-meta")
                                         span #{moment(item.createdBy.createdAt).format('DD/MM/YYYY')}
-                                        a(href=item.slug class="read-more") XEM THÊM
+                                        a(href=`/articles/${item.slug}` class="read-more") XEM THÊM
                    
                     aside(class="sidebar")
                         h2(class="sidebar-title") Tin mới
                         each item in articles
                             div(class="recent-post")
-                                a(href=item.slug) 
+                                a(href=`/articles/${item.slug}`) 
                                     img(src=item.thumbnail alt=item.title)
                                 div(class="recent-post-content")
-                                    a(href=item.slug) 
+                                    a(href=`/articles/${item.slug}`) 
                                         h3 #{item.title}
                                     div(class="recent-post-date") #{moment(item.createdBy.createdAt).format('DD/MM/YYYY')}
                             

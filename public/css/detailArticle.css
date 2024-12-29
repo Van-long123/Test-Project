@@ -1,115 +1,43 @@
-
-header.articles {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
+.news-item {
+    margin-bottom: 1rem;
 }
-
+.text-warning{
+    font-size: 24px;
+}
+.text-dark{
+    font-size:14px;
+}
 a{
     text-decoration: none !important;
 }
-/* a:hover{
-    color: #f0a500 !important;
-} */
-.site-title {
-    font-size: 24px;
-    font-weight: bold;
-}
+.text-dark {
 
-.main-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
 }
-
-.article-list {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+h5{
+    font-size: 0 !important;
+    position: relative;
+    top: -3px;
 }
-
-.article-card {
-    display: flex;
-    gap: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+.news-date{
+    font-size:11px !important;
 }
-
-.article-image {
-    width: 300px;
-    height: 200px;
+.news-item img {
+    width: 100px;
+    height: 70px;
     object-fit: cover;
-    border-radius: 4px;
 }
-
-.article-content h2 {
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
-.article-content p {
+.news-date {
     color: #666;
-    line-height: 1.5;
-    margin-bottom: 10px;
+    font-size: 0.9rem;
 }
-.article-content a {
-    color: #212529;
+.main-content img {
+    max-width: 100%;
+    height: auto;
 }
-.article-content a:hover {
-    color: #212529;
-}
-.article-meta {
-    display: flex;
-    gap: 15px;
-    color: #888;
-    font-size: 14px;
-}
-
-.read-more {
-    color: #f0a500 !important;
-    text-decoration: none;
-}
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 .sidebar-title {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
-
-.recent-post {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.recent-post img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.recent-post-content h3 {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-.recent-post-content a {
-    color: #212529;
-}
-.recent-post-content a:hover {
-    color: #212529;
-}
-.recent-post-date {
-    color: #888;
-    font-size: 14px;
-}
-
 .Footer1{
     /* background-color: rgba(241, 236, 236,0.4); */
     margin-top: 0px !important;
