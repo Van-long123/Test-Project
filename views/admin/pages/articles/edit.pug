@@ -2,10 +2,10 @@ extend ../../layouts/default
 include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 block main 
-    h1 Thêm mới danh mục
+    h1 Cập nhật bài viết
     +alert-error(5000) 
     form(
-        action=`${prefixAdmin}/articles-category/edit/${record.id}?_method=PATCH`,
+        action=`${prefixAdmin}/articles/edit/${record.id}?_method=PATCH`,
         id="form-create-article",
         method="POST"
         enctype="multipart/form-data"
@@ -19,14 +19,44 @@ block main
             name="title",
             value=record.title
             )
+        
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio",
+                class="form-check-input",
+                id="featured1",
+                name="featured",
+                value="1",
+                checked=record.featured=='1' ? true :false
+            )
+            label(for="featured1" class="form-check-label") Nổi bật
+        div(class="form-group form-check form-check-inline")
+            input(
+                type="radio",
+                class="form-check-input",
+                id="featured0",
+                name="featured",
+                value="0"
+                checked=record.featured=='0' ? true :false
+
+            )
+            label(for="featured0" class="form-check-label") Không
         div(class="form-group")
-            label(for="desc") Mô tả
+            label(for="desc") Mô tả ngắn
             textarea(
             class="form-control tiny-mce",
             id="desc",
-            name="description",
+            name="shortDescription",
             rows="5"
-            ) !{record.description}
+            ) !{record.shortDescription}
+        div(class="form-group")
+            label(for="content") Nội dung
+            textarea(
+            class="form-control tiny-mce",
+            id="content",
+            name="content",
+            rows="10"
+            ) !{record.content}
         div(class="form-group" upload-image)
             label(for="thumbnail") Ảnh
             input(
@@ -67,7 +97,6 @@ block main
                 name="status",
                 value="inactive"
                 checked=(record.status=='inactive' ? true : false)
-
             )
             label(for="statusInActive" class="form-check-label") Dừng hoạt động
         div(class="form-group")

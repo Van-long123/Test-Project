@@ -3,7 +3,7 @@ const slug =require('mongoose-slug-updater')
 mongoose.plugin(slug)
 const articleSchema=new mongoose.Schema({
     title:String,
-    shorDescription:String,
+    shortDescription:String,
     content:String,
     thumbnail:String,
     status:String,
@@ -20,7 +20,7 @@ const articleSchema=new mongoose.Schema({
         default:false
     },
     createdBy:{
-        acoount_id:String,
+        account_id:String,
         createdAt:{
             type:Date,
             default:Date.now

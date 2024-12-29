@@ -1,23 +1,25 @@
 extend ../../layouts/default
 include ../../mixins/alert.pug
 block main
-    if (articlesCategory.title) 
-        h1(class="mb-4") #{articlesCategory.title}
-    if (articlesCategory.thumbnail)
+    if (article.title) 
+        h1(class="mb-4") #{article.title}
+    if (article.thumbnail)
         div(class="mb-4")
             img(
-            src=articlesCategory.thumbnail
+            src=article.thumbnail
             style="width: 100px"
             )
-    if (articlesCategory.status)
+    if (article.status)
         div(class="mb-4")
             span Status:
-            if (articlesCategory.status === "active")
+            if (article.status === "active")
                 span(class="badge badge-success") Hoạt động
             else
                 span(class="badge badge-danger") Dừng hoạt động
-    if (articlesCategory.position) 
-        div(class="mb-4") Vị trí: <b>#{articlesCategory.position}</b>
-    if (articlesCategory.description)
-        div(class="mb-4") !{articlesCategory.description}
-    a(href=`${prefixAdmin}/products-category/edit/${articlesCategory.id}` class="btn btn-warning btn-sm ml-1") Chỉnh sửa
+    if (article.position) 
+        div(class="mb-4") Vị trí: <b>#{article.position}</b>
+    if (article.shortDescription)
+        div(class="mb-4") !{article.shortDescription}
+    if (article.content)
+        div(class="mb-4") !{article.content}
+    a(href=`${prefixAdmin}/articles/edit/${article.id}` class="btn btn-warning btn-sm ml-1") Chỉnh sửa
