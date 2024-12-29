@@ -76,15 +76,15 @@ block main
                                                 data-id=item.id
                                                 button-change-status
                                                 class="badge badge-danger") #{item.status}
-                                else 
-                                    if(item.status == "active")
-                                        a(
-                                            href="javascript:;"
-                                            class="badge badge-success") #{item.status}
-                                    else
-                                        a(
-                                            href="javascript:;"
-                                            class="badge badge-danger") #{item.status}
+                                    else 
+                                        if(item.status == "active")
+                                            a(
+                                                href="javascript:;"
+                                                class="badge badge-success") #{item.status}
+                                        else
+                                            a(
+                                                href="javascript:;"
+                                                class="badge badge-danger") #{item.status}
                                 td 
                                     p #{item.fullname}
                                     if(item.createdBy.createdAt)

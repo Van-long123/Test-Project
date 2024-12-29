@@ -18,29 +18,26 @@ html(lang="en")
                 header.articles
                     div(class="site-title") Bài Viết Thức Ăn
                 main(class="main-content")
-                    each item in articlesFeatured
-                        div(class="article-list")
-                            article(class="article-card")
+                    div(class="article-list")
+                        article(class="article-card")
+                            a(href="") 
+                                img(src="https://res.cloudinary.com/dm5pbyp9g/image/upload/v1728136296/ztozbqtnht7bsuelrwzs.webp" alt="Perfume article" class="article-image")
+                            div(class="article-content")
                                 a(href="") 
-                                    img(src=item.thumbnail alt=item.title class="article-image")
-                                div(class="article-content")
-                                    a(href=item.slug) 
-                                        h2 #{item.title}
-                                    p !{item.shortDescription}
-                                    div(class="article-meta")
-                                        span #{moment(item.createdBy.createdAt).format('DD/MM/YYYY')}
-                                        a(href=item.slug class="read-more") XEM THÊM
-                   
+                                    h2 PHÂN BIỆT CÁC LOẠI NỒNG ĐỘ NƯỚC HOA
+                                p Nồng độ tinh dầu trong nước hoa là gì? Eau de Parfum, Eau de Toilette... là gì? Đó là những cụm từ để phân biệt nồng độ nước hoa.
+                                div(class="article-meta")
+                                    span 07/12/2024
+                                    a(href="#" class="read-more") XEM THÊM
                     aside(class="sidebar")
                         h2(class="sidebar-title") Tin mới
-                        each item in articles
-                            div(class="recent-post")
-                                a(href=item.slug) 
-                                    img(src=item.thumbnail alt=item.title)
-                                div(class="recent-post-content")
-                                    a(href=item.slug) 
-                                        h3 #{item.title}
-                                    div(class="recent-post-date") #{moment(item.createdBy.createdAt).format('DD/MM/YYYY')}
+                        div(class="recent-post")
+                            a(href="") 
+                                img(src="https://res.cloudinary.com/dm5pbyp9g/image/upload/v1728136296/ztozbqtnht7bsuelrwzs.webp" alt="Recent post")
+                            div(class="recent-post-content")
+                                a(href="") 
+                                    h3 Giới thiệu về nước hoa NARCISO RODRIGUEZ
+                                div(class="recent-post-date") 13/12/2024
                             
         include ../../partials/footer
         script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js")

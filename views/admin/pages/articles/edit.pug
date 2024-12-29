@@ -20,7 +20,12 @@ block main
                 name="title",
                 value=record.title
                 )
-            
+            div(class="form-group")
+                label(for="title") Chủ đề 
+                select(name="article_category_id" id="article_category_id" class="form-control" required)
+                    option(value="" disabled ) -- Chọn danh mục --
+                    each category in categories
+                        option(value=category.id selected=category.id==category.article_category_id ? true:false)  #{category.title}
             div(class="form-group form-check form-check-inline")
                 input(
                     type="radio",

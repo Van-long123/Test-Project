@@ -4,6 +4,7 @@ const searchHelper=require('../../helpers/search')
 const pagination=require('../../helpers/pagination');
 const systemConfig=require('../../config/system')
 const Account = require("../../model/account.model");
+const ArticleCategory = require("../../model/articles-category");
 module.exports.index= async (req,res)=>{
     const permissions=res.locals.role.permissions
     if(!permissions.includes("articles_view")){
@@ -181,8 +182,12 @@ module.exports.changeMulti=async (req,res)=>{
 }
 
 module.exports.create=async (req,res)=>{
+    const records=await ArticleCategory.find({
+        deleted:false
+    })
     res.render('admin/pages/articles/create',{
         title:'Tạo bài viết',
+        records:records
     })
 }
 
@@ -216,9 +221,13 @@ module.exports.edit=async (req,res)=>{
             _id:id,
             deleted:false
         })
+        const categories=await ArticleCategory.find({
+            deleted:false
+        })
         res.render('admin/pages/articles/edit',{
             title:'Sửa bài viết',
-            record:article
+            record:article,
+            categories:categories
         })
     } catch (error) {
         
