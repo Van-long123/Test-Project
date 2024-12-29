@@ -22,6 +22,10 @@ section#sidebar
                 a(href=`${prefixAdmin}/orders`)
                     <i class='bx bxs-user-account' ></i>
                     span.text Danh sách đơn hàng
+        li
+            a(href=`${prefixAdmin}/articles-category`)
+                span(class="bx") <i class="fa-regular fa-newspaper"></i>
+                span.text Danh mục bài viết
         if(role.permissions.includes("roles_view"))
             li
                 a(href=`${prefixAdmin}/roles`)
@@ -42,6 +46,7 @@ section#sidebar
                 a(href=`${prefixAdmin}/users`)
                     <i class='bx bxs-user-account' ></i>
                     span.text Danh sách tài khoản client
+        
         
     ul.side-menu
         li
