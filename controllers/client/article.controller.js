@@ -4,13 +4,13 @@ module.exports.index=async(req,res)=>{
     const articlesFeatured =await Article.find({
         deleted: false,
         featured:"1"
-    })
+    }).select('title shortDescription thumbnail slug createdBy')
     const articles =await Article.find({
         deleted: false,
         featured:"1"
     }).sort({
        ' createdBy.createdAt': 'desc'
-    }).limit(6)
+    }).limit(6).select('title shortDescription thumbnail slug createdBy')
     res.render('client/pages/articles/index',{
         title:'Tạp chí thức ăn',
         articlesFeatured:articlesFeatured,
