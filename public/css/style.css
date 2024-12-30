@@ -2453,3 +2453,103 @@ a.button-hotline:hover {
     font-weight: 600;
 }
 /* error message */
+
+/* Zalo Icon */
+.zalo-icon {
+    position: fixed;
+    right: 15px;
+    bottom: 100px;
+    z-index: 999;
+}
+
+.zalo-icon img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+.zalo-icon img:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Phone Icon */
+.phone-icon {
+    position: fixed;
+    right: 15px;
+    bottom: 40px;
+    z-index: 999;
+}
+.phone-icon a {
+    text-decoration: none !important;
+}
+.phone-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #2ecc71;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+
+.phone-circle i {
+    color: white;
+    font-size: 24px;
+}
+
+.phone-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Animation for phone icon */
+/* .phone-icon {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+} */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .zalo-icon {
+        right: 15px;
+        bottom: 80px;
+    }
+    
+    .zalo-icon img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .phone-icon {
+        bottom: 20px;
+    }
+    
+    .phone-circle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .phone-circle i {
+        font-size: 20px;
+    }
+}
+/* icon zalo  */
+/* icon std  */
+
+/* icon std  */
