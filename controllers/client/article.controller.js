@@ -24,7 +24,6 @@ module.exports.detail=async(req,res)=>{
         })
         const articles =await Article.find({
             deleted: false,
-            featured:"1"
         }).sort({
            ' createdBy.createdAt': 'desc'
         }).limit(6)
