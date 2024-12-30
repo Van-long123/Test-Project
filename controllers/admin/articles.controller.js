@@ -28,6 +28,9 @@ module.exports.index= async (req,res)=>{
     if(req.query.sortKey&& req.query.sortValue){
         sort[req.query.sortKey]=req.query.sortValue
     }
+    else{
+        sort.position='desc'
+    }
     const countArticles=await Article.countDocuments(find)
     const objectPagination=pagination(req.query,countArticles,{
         currentPage:1,
