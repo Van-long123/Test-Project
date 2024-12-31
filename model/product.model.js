@@ -12,6 +12,16 @@ const productSchema=new mongoose.Schema({
     featured:String,
     position:Number,
     product_category_id:String,
+    ratings:{
+        totalRating:{
+            type:Number,
+            default:0
+        },// Tổng số sao
+        numberOfRatings:{
+            type:Number,
+            default:0
+        }// Số lượt đánh giá
+    },
     slug:{
         type:String,
         slug:"title",

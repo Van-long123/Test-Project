@@ -2550,6 +2550,44 @@ a.button-hotline:hover {
     }
 }
 /* icon zalo  */
-/* icon std  */
 
-/* icon std  */
+/* rating */
+.rating {
+    margin: 5px 0px 5px 5px;
+}
+
+.stars {
+    display: inline-flex;
+    align-items: center;
+}
+
+.stars i {
+    color: #ddd;  /* Default gray color for inactive stars */
+    font-size: 14px;
+    margin-right: 2px;
+}
+.detail .judge-comment .stars i {
+    cursor: pointer;
+}
+.stars span.active i {
+    color: #ffd700;  /* Yellow color for active stars */
+}
+
+.rating-count {
+    color: #666;
+    font-size: 16px;
+    margin-left: 1px;
+    margin-bottom: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stars i {
+        font-size: 12px;
+    }
+    .rating-count {
+        font-size: 11px;
+    }
+}
+
+/* rating */

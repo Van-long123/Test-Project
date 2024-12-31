@@ -31,6 +31,14 @@ const orderSchema=new mongoose.Schema({
             discountPercentage:Number,
         }
     ],
+    hasCommented:{
+        type:Boolean,
+        default:false
+    },
+    hasReviewed:{
+        type:Boolean,
+        default:false
+    },
     deleted:{
         type:Boolean,
         default:false

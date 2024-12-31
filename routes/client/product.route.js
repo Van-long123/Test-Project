@@ -7,5 +7,6 @@ Router.get('/',controller.index)
 Router.get('/featured',controller.featured)
 Router.get('/:slugCategory', controller.category)
 Router.post('/comment',validate.comment,controller.comment)
+Router.post('/rate',controller.rate)
 
 module.exports =Router

@@ -16,9 +16,14 @@ if(btnComment){
                 dataType:'json',
                 success:function(response){
                     console.log(response)
-                    $('#dsbinhluan').append('<div><span class="name-tag">' + response.userName +
-                        ': </span>' +'<span class="prize">' + content + '</span></div>');
-                    $('#content').val('');
+                    if (response.code == 200) {
+                        $('#dsbinhluan').append('<div><span class="name-tag">' + response.userName +
+                            ': </span>' +'<span class="prize">' + content + '</span></div>');
+                        $('#content').val('');
+                    }
+                    else {
+                        alert(response.message)
+                    }
                 },
                 error:function(error){
                   
@@ -146,3 +151,82 @@ if (btnPay) {
     });
 }
 
+// rating 
+const dataRating = document.querySelector('[data-rating]')
+if (dataRating) {
+    const stars = document.querySelectorAll('[data-star]')
+    stars.forEach(star => {
+        star.addEventListener('click', async (e) => {
+            const rating = parseInt(star.getAttribute('data-star'))
+            const id = document.querySelector('[data-id]').getAttribute('data-id')
+            try {
+                const response = await fetch('/products/rate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, rating }),
+                })
+                const result = await response.json()
+                if (result.code == 200) {
+                    document.querySelector('.rate-count').innerHTML = `(${result.averageRating.toFixed(1)})`
+                    stars.forEach(star => {
+                        if (parseInt(star.getAttribute('data-star')) <= rating) {
+                            star.classList.add('active')
+                        } else {
+                            star.classList.remove('active')
+                        }
+                    })
+                    const starsView = document.querySelectorAll('[star]')
+                    starsView.forEach(star => {
+                        if (parseInt(star.getAttribute('star')) <= result.averageRating) {
+                            star.classList.add('active')
+                            // 4.5 % 1 =0.5  4%1 =0 
+                        } else if (result.averageRating % 1 !== 0 && parseInt(star.getAttribute('star')) == Math.round(result.averageRating)) {
+                            star.classList.add('active')
+                            // <i class="fa-solid fa-star-half-stroke"></i> nửa sao 
+                            star.innerHTML = '<i class="fa-solid fa-star-half-stroke"></i>';
+                        }
+                        else {
+                            star.classList.remove('active')
+                            // i.fa-solid.fa-star  1 sao 
+                            // i class="fa-regular fa-star"></i> sao rỗng
+                            star.innerHTML = '<i class="fa-regular fa-star"></i>';
+                        }
+                    })
+
+                }
+                else {
+                    alert(result.message)
+                }
+
+            } catch (error) {
+                alert('Lỗi khi đánh giá, vui lòng thử lại.')
+            }
+        })
+    })
+}
+
+const starsView = document.querySelectorAll('[star]')
+if(starsView){
+    const stars =document.querySelector('[averageRating]')
+    if(stars){
+        const averageRating=parseFloat(stars.getAttribute('averageRating'))
+        starsView.forEach(star => {
+            if (parseInt(star.getAttribute('star')) <= averageRating) {
+                star.classList.add('active')
+                // 4.5 % 1 =0.5  4%1 =0 
+            } else if (averageRating % 1 !== 0 && parseInt(star.getAttribute('star')) == Math.round(averageRating)) {
+                star.classList.add('active')
+                // <i class="fa-solid fa-star-half-stroke"></i> nửa sao 
+                star.innerHTML = '<i class="fa-solid fa-star-half-stroke"></i>';
+            }
+            else {
+                star.classList.remove('active')
+                // i.fa-solid.fa-star  1 sao 
+                // i class="fa-regular fa-star"></i> sao rỗng
+                star.innerHTML = '<i class="fa-regular fa-star"></i>';
+            }
+        })
+    }
+    
+}
+// rating 

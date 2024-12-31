@@ -55,6 +55,21 @@ block main
                                                 span.price-amount #{product.priceNew.toLocaleString('vi-VN')}
                                                     span.currency-symbol đ
                                                 span.price-amount.old-price #{product.price.toLocaleString('vi-VN')} <span class="currency-symbol1">đ</span>
+                                            .rating
+                                                //- <i class="fa-solid fa-star-half-stroke"></i>
+                                                //- <i class="fa-regular fa-star"></i>
+                                                .stars(averageRating=product.averageRating )
+                                                    span(star="1")
+                                                        i.fa-solid.fa-star
+                                                    span(star="2")
+                                                        i.fa-solid.fa-star
+                                                    span(star="3")
+                                                        i.fa-solid.fa-star
+                                                    span(star="4")
+                                                        i.fa-solid.fa-star
+                                                    span(star="5")
+                                                        i.fa-solid.fa-star
+                                                    span.rate-count (#{product.averageRating || 0})
                                             //- a(href=`/order/info?id=${product.id}` class="btn btn-pay mt-2 ") Mua ngay
                                             //- button.btn.btn-pay.mt-2(data-id="{{$value->id}}") Mua ngay
                                             button(data-id=product.slug class="btn btn-pay mt-2 ") Mua ngay
@@ -86,6 +101,21 @@ block main
                                                 span.price-amount #{product.priceNew.toLocaleString('vi-VN')}
                                                     span.currency-symbol đ
                                                 span.price-amount.old-price #{product.price.toLocaleString('vi-VN')} <span class="currency-symbol1">đ</span>
+                                            .rating
+                                                //- <i class="fa-solid fa-star-half-stroke"></i>
+                                                //- <i class="fa-regular fa-star"></i>
+                                                .stars(averageRating=product.averageRating )
+                                                    span(star="1")
+                                                        i.fa-solid.fa-star
+                                                    span(star="2")
+                                                        i.fa-solid.fa-star
+                                                    span(star="3")
+                                                        i.fa-solid.fa-star
+                                                    span(star="4")
+                                                        i.fa-solid.fa-star
+                                                    span(star="5")
+                                                        i.fa-solid.fa-star
+                                                    span.rate-count (#{product.averageRating || 0})
                                             //- button(data=product.id class="btn btn-pay mt-2 ") Mua ngay
                                             button(data-id=product.slug class="btn btn-pay mt-2 ") Mua ngay
                         .row.mt-3

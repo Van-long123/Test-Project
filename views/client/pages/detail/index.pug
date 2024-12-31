@@ -12,19 +12,34 @@ block main
                     img.slide(src=product.thumbnail)
                 .title-section-2
                     span Đánh giá sản phẩm
-                if(user)
-                    .judge-comment
+                .judge-comment
+                    if(hasReviewed)
                         .img-profile
-                            span.name-tag #{user.fullname}
-                        form#comment-form(action="", method="post")
-                            input#content(type="text", placeholder="       Nhận xét", name="content")
-                            button#btnComment(type="submit") Gửi
+                            span.name-tag #{(user) ? user.fullname : "No Name"}
+                        .rating
+                            .stars(data-rating)
+                                span(data-star="1")
+                                    i.fa-solid.fa-star
+                                span(data-star="2")
+                                    i.fa-solid.fa-star
+                                span(data-star="3")
+                                    i.fa-solid.fa-star
+                                span(data-star="4")
+                                    i.fa-solid.fa-star
+                                span(data-star="5")
+                                    i.fa-solid.fa-star
                 div(class="judge mt-2")
                     div(class="info-profile" id="dsbinhluan")
+                        
                         each comment in comments
                             div
                                 span(class="name-tag") #{comment.fullname}: 
                                 span(class="prize") #{comment.content}
+                if(hasCommented)
+                    form#comment-form(action="", method="post")
+                        input#content(type="text", placeholder="       Nhận xét", name="content")
+                        button#btnComment(type="submit") Gửi
+                
                         
             .right
                 h3 #{product.title}
@@ -33,6 +48,21 @@ block main
                     span.price-amount #{product.priceNew.toLocaleString('vi-VN')}
                         span.currency-symbol đ
                     span.price-amount.old-price #{product.price.toLocaleString('vi-VN')} <span class="currency-symbol1"> đ</span>
+                .rating
+                    //- <i class="fa-solid fa-star-half-stroke"></i>
+                    //- <i class="fa-regular fa-star"></i>
+                    .stars(averageRating=product.averageRating )
+                        span(star="1")
+                            i.fa-solid.fa-star
+                        span(star="2")
+                            i.fa-solid.fa-star
+                        span(star="3")
+                            i.fa-solid.fa-star
+                        span(star="4")
+                            i.fa-solid.fa-star
+                        span(star="5")
+                            i.fa-solid.fa-star
+                        span.rate-count (#{product.averageRating || 0})
                 p !{product.description} 
                 h5 Number
                 .add.flex1

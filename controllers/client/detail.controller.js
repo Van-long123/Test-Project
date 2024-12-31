@@ -3,6 +3,7 @@ const Comment=require("../../model/comment.model");
 const User=require("../../model/user.model");
 const ProductCategory=require("../../model/products-category.model");
 const productsHelper=require("../../helpers/product");
+const Order = require("../../model/order.model");
 
 module.exports.detail=async(req,res)=>{
      const productsRandom = await Product.aggregate([
@@ -15,6 +16,11 @@ module.exports.detail=async(req,res)=>{
         deleted:false,
         status:'active',
     })
+    if(product.ratings){
+        if(product.ratings.numberOfRatings){
+            product.averageRating=(product.ratings.totalRating/product.ratings.numberOfRatings).toFixed(1)
+        }
+    }
     product.priceNew=productsHelper.priceNew(product)
     const comments=await Comment.find({
         product_id:product.id
@@ -27,11 +33,35 @@ module.exports.detail=async(req,res)=>{
         if(user){
             comment.fullname=user.fullname;
         }
+        else{
+            comment.fullname="No Name";
+        }
+    }
+
+    const cartId=req.cookies.cartId;
+    let hasCommented;
+    let hasReviewed
+    if(cartId){
+        const order=await Order.findOne({
+            cartId:cartId,
+            'products.product_id':product.id
+        }).sort({'createdBy.createdAt':'desc'})
+        if(order){
+            hasCommented=!order.hasCommented;
+            hasReviewed=!order.hasReviewed;
+           
+        }
+        else{
+            hasReviewed=false;
+            hasCommented=false;
+        }
     }
     res.render("client/pages/detail/index",{
         title:product.slug,
         product:product,
         productsRandom:productsRandom,
-        comments:comments
+        comments:comments,
+        hasCommented:hasCommented,
+        hasReviewed:hasReviewed
     });
 }
