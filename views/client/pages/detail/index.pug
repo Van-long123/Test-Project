@@ -17,6 +17,8 @@ block main
                         .img-profile
                             span.name-tag #{(user) ? user.fullname : "No Name"}
                         .rating
+                            span Đánh giá sản phẩm này 
+                            br
                             .stars(data-rating)
                                 span(data-star="1")
                                     i.fa-solid.fa-star
@@ -37,7 +39,7 @@ block main
                                 span(class="prize") #{comment.content}
                 if(hasCommented)
                     form#comment-form(action="", method="post")
-                        input#content(type="text", placeholder="       Nhận xét", name="content")
+                        input#content(type="text", placeholder="       Viết nhận xét", name="content")
                         button#btnComment(type="submit") Gửi
                 
                         
