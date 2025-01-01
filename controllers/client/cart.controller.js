@@ -367,52 +367,56 @@ module.exports.creatCheckout=async (req,res)=>{
     })
 }
 module.exports.info=async (req,res)=>{
-    if(!req.params.slug){
-        var cart=await Cart.findOne({_id:req.cookies.cartId})
-        if(cart.products.length>0){
-            for (const item of cart.products) {
-                const productId=item.product_id;
-                const productInfo = await Product.findOne({_id: productId}).select('title thumbnail price slug discountPercentage')
-                productInfo.priceNew=productsHelper.priceNew(productInfo)
-                productInfo.totalPrice=productInfo.priceNew*item.quantity
-                item.productInfo=productInfo
+    try {
+        if(!req.params.slug){
+            var cart=await Cart.findOne({_id:req.cookies.cartId})
+            if(cart.products.length>0){
+                for (const item of cart.products) {
+                    const productId=item.product_id;
+                    const productInfo = await Product.findOne({_id: productId}).select('title thumbnail price slug discountPercentage')
+                    productInfo.priceNew=productsHelper.priceNew(productInfo)
+                    productInfo.totalPrice=productInfo.priceNew*item.quantity
+                    item.productInfo=productInfo
+                }
+                cart.totalPrice=cart.products.reduce((sum,item)=>{
+                    return sum+item.productInfo.totalPrice
+                },0)
             }
-            cart.totalPrice=cart.products.reduce((sum,item)=>{
-                return sum+item.productInfo.totalPrice
-            },0)
-        }
-    }
-    else{
-        var product=await Product.findOne({slug:req.params.slug}).select('title price discountPercentage thumbnail slug stock')
-        if(product.stock==0){
-            req.flash('stockError','Sản phẩm đã bán hết')
-            res.redirect('back')
-            return 
-        }
-        product.priceNew=productsHelper.priceNew(product)
-        
-        //6 6 
-        
-        if(req.query.quantity){
-            product.quantity=parseInt(req.query.quantity)
         }
         else{
-            product.quantity=1
+            var product=await Product.findOne({slug:req.params.slug}).select('title price discountPercentage thumbnail slug stock')
+            if(product.stock==0){
+                req.flash('stockError','Sản phẩm đã bán hết')
+                res.redirect('back')
+                return 
+            }
+            product.priceNew=productsHelper.priceNew(product)
+            
+            //6 6 
+            
+            if(req.query.quantity){
+                product.quantity=parseInt(req.query.quantity)
+            }
+            else{
+                product.quantity=1
+            }
+            console.log(product.quantity)
+            console.log(product.stock)
+            console.log(product.stock<product.quantity)
+            if(product.stock<product.quantity){
+                req.flash('error','Số lượng bạn chọn quá hàng trong kho')
+                res.redirect(`/detail/${req.params.slug}`)
+                return;
+            }
+            
         }
-        console.log(product.quantity)
-        console.log(product.stock)
-        console.log(product.stock<product.quantity)
-        if(product.stock<product.quantity){
-            req.flash('error','Số lượng bạn chọn quá hàng trong kho')
-            res.redirect(`/detail/${req.params.slug}`)
-            return;
-        }
-        
+    
+        res.render('client/pages/checkout/info',{
+            title:"Thông tin đơn hàng",
+            cartDetail:cart,
+            product:product
+        })
+    } catch (error) {
+        res.redirect('/')
     }
-
-    res.render('client/pages/checkout/info',{
-        title:"Thông tin đơn hàng",
-        cartDetail:cart,
-        product:product
-    })
 }
