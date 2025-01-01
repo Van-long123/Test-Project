@@ -4,7 +4,7 @@ module.exports.cartId=async(req,res,next)=>{
         const cart=new Cart()
         await cart.save()
         const expiresCookie=1000*60*60*24*365
-        res.cookie('cartId',cart.id,new Date(Date.now()+expiresCookie))
+        res.cookie('cartId',cart.id,{maxAge:expiresCookie, httponly:true})
     }
     else{
         // console.log(req.cookies.cartId)
