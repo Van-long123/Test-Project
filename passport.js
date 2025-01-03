@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     // nơi Google chuyển hướng sau khi xác thực thành công
-    callbackURL: "/auth/google/callback"
+    callbackURL: "https://food-project-nu-opal.vercel.app/auth/google/callback"
   },
     async (accessToken, refreshToken, profile, cb) =>{
         // thêm user ở đây 
