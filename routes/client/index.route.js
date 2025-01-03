@@ -2,6 +2,7 @@ const homeRouter=require('./home.route')
 const userRouter=require('./user.route')
 const cartRouter=require('./cart.route')
 const detailRouter=require('./detail.route')
+const authRouter=require('./auth.route')
 const productRouter=require('./product.route')
 const searchRouter=require('./search.route')
 const callbackRouter=require('./callback.route')
@@ -21,4 +22,5 @@ module.exports=(app)=>{
     app.use('/products',productRouter)
     app.use('/search',searchRouter)
     app.use('/articles',articleRouter)
+    app.use('/auth',authRouter)
 }

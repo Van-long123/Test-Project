@@ -16,6 +16,7 @@ const methodOverride = require('method-override')
 app.set('view engine', 'pug');
 app.set('views',`${__dirname}/views`)
 app.use(express.static(`${__dirname}/public`));
+const passport=require('./passport')
 // TinyMCE 
 var path = require('path');
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));

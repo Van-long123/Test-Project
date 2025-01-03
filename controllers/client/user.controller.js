@@ -12,7 +12,8 @@ module.exports.login=(req,res)=>{
 }
 module.exports.loginPost=async(req,res)=>{
     const {email,password}=req.body
-    const user=await User.findOne({email: email,deleted:false})
+    const user=await User.findOne({email: email,deleted:false,typeLogin:'normal'})
+    console.log(user)
     if(!user){
         req.flash('emailError','Email không tồn tại')
         req.flash('emailValue',email)
@@ -45,7 +46,7 @@ module.exports.register=(req,res)=>{
 }
 module.exports.registerPost=async(req,res)=>{
     const existEmail=await User.findOne({email:req.body.email,deleted:false,
-        status:'active'})
+        status:'active',typeLogin:'normal'})
     if(existEmail){
         const {email,fullname,address,phone}=req.body
         // const {email,password}=req.body
@@ -67,7 +68,7 @@ module.exports.registerPost=async(req,res)=>{
 
 module.exports.logout=(req,res)=>{
     res.clearCookie("tokenUser")
-    res.clearCookie("cartId")
+    res.cookie('cartId', '', { maxAge: 0, httpOnly: true });
     res.redirect('/')
 }
 module.exports.forgotPassword=(req,res)=>{
