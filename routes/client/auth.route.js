@@ -56,7 +56,7 @@ router.get('/facebook/callback', (req, res,next) =>{
     })(req, res, next);
 },async (req, res)=>{
     // console.log(req.user);
-    res.redirect('/')
+    res.send(req.user.email)
 });
 
 module.exports = router
