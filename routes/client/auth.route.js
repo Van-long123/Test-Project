@@ -47,7 +47,7 @@ router.get('/google/callback', (req, res,next) =>{
 
 
 
-router.get('/facebook',passport.authenticate('facebook', { scope: ['profile','email'],session:false }));
+router.get('/facebook',passport.authenticate('facebook'));
 router.get('/facebook/callback', (req, res,next) =>{
         // Successful authentication, redirect home.
     passport.authenticate('facebook',(err,profile)=>{
