@@ -3,6 +3,9 @@ const router=express.Router();
 const passport=require('passport');
 const User = require('../../model/user.model');
 const Cart = require('../../model/cart.model');
+// scope: ['profile', 'email'] được sử dụng để chỉ định các
+    //  trường thông tin (fields) mà bạn muốn nhận từ google khi 
+    // người dùng đăng nhập qua google OAuth.
 router.get('/google',passport.authenticate('google', { scope: ['profile','email'] }));
 router.get('/google/callback', (req, res,next) =>{
         // Successful authentication, redirect home.
@@ -43,5 +46,17 @@ router.get('/google/callback', (req, res,next) =>{
 
 
 
+
+router.get('/facebook',passport.authenticate('facebook'));
+router.get('/facebook/callback', (req, res,next) =>{
+        // Successful authentication, redirect home.
+    passport.authenticate('facebook',(err,profile)=>{
+        req.user=profile
+        next()
+    })(req, res, next);
+},async (req, res)=>{
+    console.log(req.user);
+    res.redirect('/')
+});
 
 module.exports = router
