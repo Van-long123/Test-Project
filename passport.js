@@ -39,14 +39,14 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "https://test-project-lovat-eta.vercel.app/auth/facebook/callback",
+    callbackURL: "https://test-project-lovat-eta.vercel.app/facebook/callback",
     // profileFields: ['id', 'email', 'name'] được sử dụng để chỉ định các
     //  trường thông tin (fields) mà bạn muốn nhận từ Facebook khi 
     // người dùng đăng nhập qua Facebook OAuth.
-    profileFields: [ 'email',  'profile',  'photos', 'displayName'],
+    profileFields: [ 'id', 'email',  'photos', 'displayName'],
   },
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile)
-    return cb(null, profile); 
+    cb(null, profile);
   }
 ));
